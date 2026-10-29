@@ -1,0 +1,20 @@
+warning: fixed-point-theorems: repository '<repo>/.lake/packages/fixed-point-theorems' has local changes
+'IDMM.id_bound_every_char' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IDMM.rankAtMost_of_scheme' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IDMM.uz_exponent_slack' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IDMM.construction_gen' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IDMM.oracles_of_scheme' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IDMM.exists_ext_of_algClosure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IDMM.IDBoundF.of_ext' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Matmul.RectangularRankBridge.exists_scheme_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+IDMM.id_bound_every_char : ∀ (F : Type u_1) [inst : Field F],
+  ringChar F ≠ 2 → IDMM.IDBoundF F (4173 / 2500) ∧ IDMM.S4BoundF F (4173 / 2500) ∧ IDMM.Perm4BoundF F (4173 / 2500)
+def IDMM.IDBoundF.{u} : (F : Type u) → [Field F] → ℝ → Prop :=
+fun F [Field F] c =>
+  ∀ (ε : ℝ), 0 < ε → ∃ C, 0 < C ∧ ∀ (N : ℕ), 1 ≤ N → PauliCubes.NCSizeLE (PauliCubes.ID F N) ⌊C * ↑N ^ (c + ε)⌋₊
+def IDMM.S4BoundF.{u} : (F : Type u) → [Field F] → ℝ → Prop :=
+fun F [Field F] c =>
+  ∀ (ε : ℝ), 0 < ε → ∃ C, 0 < C ∧ ∀ (N : ℕ), 1 ≤ N → PauliCubes.NCSizeLE (PauliCubes.S4 F N) ⌊C * ↑N ^ (c + ε)⌋₊
+def IDMM.Perm4BoundF.{u} : (F : Type u) → [Field F] → ℝ → Prop :=
+fun F [Field F] c =>
+  ∀ (ε : ℝ), 0 < ε → ∃ C, 0 < C ∧ ∀ (N : ℕ), 1 ≤ N → PauliCubes.NCSizeLE (PauliCubes.perm4 F N) ⌊C * ↑N ^ (c + ε)⌋₊

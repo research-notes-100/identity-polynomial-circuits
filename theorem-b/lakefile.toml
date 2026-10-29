@@ -1,0 +1,23 @@
+name = "hurwitz_from_theorem_b"
+version = "0.1.0"
+defaultTargets = ["TheoremB"]
+
+[leanOptions]
+autoImplicit = false
+relaxedAutoImplicit = false
+pp.unicode.fun = true
+exponentiation.threshold = 2048
+
+# Anthropic's formalization of "A 2^o(n) Time Algorithm for 3-SAT", pinned. Nothing in it is changed.
+[[require]]
+name = "eth"
+git = "https://github.com/anthropics/formal-math"
+rev = "16a5ce41304fcdaea4e0be7c132e1c361dc26da5"
+subDir = "eth"
+
+# Defs: the definitions the theorems are stated in (imports Mathlib only).
+# Corollaries, PTRank: the proofs, from Anthropic's Theorem B. CharP, CharPGrowth: the same in
+# characteristic p. Rectangular: two alphabets, [N₁, N₂, M] formulas. Sanity: checks of the definitions.
+[[lean_lib]]
+name = "TheoremB"
+roots = ["TheoremB.Defs", "TheoremB.Corollaries", "TheoremB.PTRank", "TheoremB.CharP", "TheoremB.CharPGrowth", "TheoremB.Rectangular", "TheoremB.Sanity"]

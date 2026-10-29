@@ -1,0 +1,49 @@
+--- upstream/PauliCubes/Cert.lean
++++ PauliCubes/Cert.lean
+@@ -5,6 +5,7 @@
+ invariant polynomial, nonzero at `(1, 1, 1, 1)`, homogeneous of degree `48 n`, whose support points are
+ sums of 48 permuted types of disallowed words. No averaging is used, so any field with `2 ≠ 0` works.
+ -/
++import Mathlib.Algebra.MvPolynomial.CommRing
+ import PauliCubes.Dual
+ import PauliCubes.Basic
+ 
+--- upstream/PauliCubes/Cover.lean
++++ PauliCubes/Cover.lean
+@@ -169,7 +169,7 @@
+     intro ν hν
+     have hpν := hp ν (mem_filter.mp hν).2
+     have hle1 : ∏ i, marg μ (ν i) ≤ 1 :=
+-      prod_le_one (fun i _ => (hq _).le) (fun i _ => marg_le_one hμ _)
++      prod_le_one₀ (fun i _ => (hq _).le) (fun i _ => marg_le_one hμ _)
+     have hkp : (k : ℝ) * 2 ^ (-((n : ℝ) * (t - 1 + δ))) ≤ k * ∏ i, marg μ (ν i) :=
+       mul_le_mul_of_nonneg_left hpν (Nat.cast_nonneg _)
+     calc (1 - ∏ i, marg μ (ν i)) ^ k ≤ Real.exp (-∏ i, marg μ (ν i)) ^ k :=
+--- upstream/PauliCubes/NoCancel.lean
++++ PauliCubes/NoCancel.lean
+@@ -12,6 +12,7 @@
+ * A general `ℓ` is sorted by a permutation; the combination is symmetric, and `A`, `B` are
+   antitone, so the rearrangement inequality finishes.
+ -/
++import Mathlib.Algebra.MvPolynomial.CommRing
+ import PauliCubes.Generation
+ import Mathlib.Data.Fin.Tuple.Sort
+ import Mathlib.Algebra.Order.Rearrangement
+@@ -138,7 +139,7 @@
+   have hq : Q.coeff p = 0 := by
+     by_contra h
+     exact klt_irrefl (hQ p (mem_support_iff.2 h))
+-  refine ⟨by rw [coeff_add, hq, add_zero]; exact hP.1, fun e he hne => ?_⟩
++  refine ⟨by rw [MvPolynomial.coeff_add, hq, add_zero]; exact hP.1, fun e he hne => ?_⟩
+   rcases Finset.mem_union.1 (support_add he) with h | h
+   · exact hP.2 e h hne
+   · exact hQ e h
+@@ -447,7 +448,7 @@
+     lin ℓ (Finsupp.mapDomain σ e) = lin (ℓ ∘ σ) e := by
+   unfold lin
+   rw [← Equiv.sum_comp σ]
+-  simp [Finsupp.mapDomain_apply σ.injective]
++  simp [Finsupp.mapDomain_apply_of_injective σ.injective]
+ 
+ lemma antitone_A (m : NormalMono) : Antitone m.A :=
+   Fin.antitone_iff_succ_le.2 fun i => by

@@ -1,0 +1,6 @@
+.lake/
+*.log
+!validation/**/*.log
+
+paper/build/
+__pycache__/

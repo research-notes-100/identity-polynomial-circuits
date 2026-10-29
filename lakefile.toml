@@ -1,0 +1,33 @@
+# Independent rebuild of OpenAI's matrix-multiplication formalization (openai/math @ 7ef5c0c,
+# lean/OAI/LinearAlgebra/MatrixMultiplication, Apache-2.0, see LICENSE-OPENAI). Vendored unchanged.
+name = "id_mm"
+defaultTargets = ["IDMM", "PauliCubes"]
+
+[leanOptions]
+autoImplicit = false
+
+[[require]]
+name = "fixed-point-theorems"
+git = "https://github.com/harfe/fixed-point-theorems-lean4.git"
+rev = "770940ddf9878cf61952ed53d910b92bca841838"
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4"
+rev = "d13f23b723b8a846827a245b89c10fc7d3f11612"
+
+[[lean_lib]]
+name = "OAI"
+globs = ["OAI.+"]
+
+[[lean_lib]]
+name = "PauliCubes"
+globs = ["PauliCubes.+"]
+
+[[lean_lib]]
+name = "IDMM"
+globs = ["IDMM.+"]
+
+[[lean_lib]]
+name = "Matmul"
+globs = ["Matmul.+"]

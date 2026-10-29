@@ -1,0 +1,834 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks\do\-}
+\usepackage{microtype}
+\emergencystretch=3em
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\ID}{\mathrm{ID}}
+\newcommand{\size}{\mathrm{size}^{\mathrm{nc}}}
+\newcommand{\Hb}{\mathrm{H}}
+\newcommand{\lean}[1]{\texttt{#1}}
+\newcommand{\bits}{\F_2}
+\DeclareMathOperator{\rank}{R}
+
+\title{Majorana sums of squares and rectangular matrix multiplication:\\
+noncommutative circuits for the identity polynomial of size $N^{1.6692}$}
+\author{Carson Weitnauer}
+\date{October 29, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove that Hrube\v{s}'s identity polynomial $\ID_N=\sum_{i,j\in[N]}x_iy_jx_iy_j$ in $2N$ noncommuting
+variables, the noncommutative elementary symmetric polynomial $S_{4,N}$, and the rectangular permanent
+$\mathrm{perm}_{4,N}$ have noncommutative arithmetic circuits of size $O(N^{1.6692+\varepsilon})$ for every
+$\varepsilon>0$, over every field of characteristic different from two. The previous published bound is
+$O(N^{1.96})$, due to Hrube\v{s}. Without fast matrix multiplication, a different construction gives
+$N^{1.72790+o(1)}$, also over every field of characteristic different from two.
+
+The construction combines three ingredients: a weighted sum-of-squares identity over the bilinear forms
+$X^{\mathsf T}P_\nu Y$ of real Pauli words $P_\nu$, whose weights are supported on a ``corner'' of the
+Jordan--Wigner (Majorana) classes; blocks of Majorana modes that are moved by Clifford conjugation so that all forms
+of a block are recovered by Walsh transforms of one rectangular matrix product; and a rectangular
+matrix-multiplication bound. The
+exponent is $2\Hb(\tfrac14)-2\mu\Hb(\tfrac1{4\mu})+\mu w$, where $w$ is an admissible exponent for multiplying
+$n\times n^{(1-\mu)/\mu}$ by $n^{(1-\mu)/\mu}\times n$ matrices. With Uzna\'nski's 2026 bound
+$\omega(1,k,1)\le1+k+\frac1{4k}$, in the integer form formalized by Zhou and Wang, this gives $1.66917$. With
+OpenAI's 2026 bounds instead, an independent route gives $N^{1.690568+o(1)}$ in characteristic zero and in all but
+finitely many characteristics.
+
+The theorems and lemmas stated here are formalized and machine-checked in Lean~4 with Mathlib, using Zhou and
+Wang's and OpenAI's Lean formalizations of the matrix-multiplication inputs and only Lean's standard axioms; the
+remarks and numerical comparisons are not.
+\end{abstract}
+
+\section{Introduction}
+
+\subsection{Background}
+Hurwitz's problem~\cite{Hurwitz1898,Radon1922,Shapiro2000} asks for the smallest $s=\sigma(n)$ such that there is a
+sum-of-squares identity
+\begin{equation}\label{eq:sos}
+(x_1^2+\dots+x_n^2)(y_1^2+\dots+y_n^2)=f_1^2+\dots+f_s^2
+\end{equation}
+with bilinear forms $f_k$. Hrube\v{s}, Wigderson and Yehudayoff~\cite{HWY2011} connected this classical question
+to noncommutative arithmetic circuits, the model of Nisan~\cite{Nisan1991}: a lower bound $\sigma(n)\ge
+n^{1+\varepsilon}$ would give an exponential lower bound for the noncommutative permanent. Their reduction runs
+through the identity polynomial
+\[
+\ID_N=\sum_{i,j\in[N]}x_iy_jx_iy_j ,
+\]
+whose noncommutative circuit complexity is, up to constant factors, governed by sum-of-squares identities whose
+bilinear forms are cheap to compute together (Hrube\v{s}~\cite[Lemma~22]{Hrubes2026}). In 2024 Hrube\v{s} proved the
+first truly subquadratic bound $\sigma(n)=O(n^{1.62})$ over $\C$ and, combining it with rectangular matrix
+multiplication, that $\ID_N$, $S_{4,N}$ and $\mathrm{perm}_{4,N}$ have noncommutative circuits of size
+$O(N^{1.96})$ over every field of characteristic different from two~\cite{Hrubes2024,Hrubes2026}. (His proof gives
+$O(N^{1.954})$ from the rectangular bound of Le~Gall and Urrutia~\cite{LeGallUrrutia2018}. Run with $n^r$ copies
+of the $y$ variables, his argument gives the exponent $(r+\omega(1,r,1)+\delta)/(r+1)$ with $\delta<0.616$; with
+Uzna\'nski's $\omega(1,2,1)\le\frac{25}{8}$~\cite{Uznanski2026}, the input behind Theorem~\ref{thm:main}, this is
+below $1.9137$ at $r=2$. This comparison is computed here, not formalized.) The bound $\sigma(n)\le n^{\sqrt2+o(1)}$ over $\C$ follows from Appendix~B of Anthropic's October 2026
+paper~\cite{Anthropic3SAT}; it was observed independently on October~27, 2026 by Kapila~\cite{Kapila2026}, by
+the author (with a Lean proof built on Anthropic's formalization~\cite{AnthropicFormalMath}, in the
+\texttt{theorem-b} directory of this paper's repository), and by
+Tulsyan~\cite{Tulsyan2026}. Fed into Hrube\v{s}'s argument it improves the circuit exponent, but only to about
+$1.85$--$1.89$ depending on the matrix-multiplication input. Before Hrube\v{s}, the best bound for $\ID_N$ was the
+trivial $O(N^2)$, and branching programs of size about $N^2$ for $S_{4,N}$ and $\mathrm{perm}_{4,N}$ were given by
+Arvind, Chatterjee, Datta and Mukhopadhyay~\cite{ACDM2019}.
+
+\subsection{Results}
+Throughout, $\size_\F(f)$ is the size of a smallest noncommutative circuit over the field $\F$ computing $f$
+(Definition~\ref{def:circuit}), and we write $\size_\F(f_N)\le N^{c+o(1)}$ for
+``$\size_\F(f_N)=O_\varepsilon(N^{c+\varepsilon})$ for every $\varepsilon>0$''.
+
+\begin{theorem}[main theorem]\label{thm:main}
+Over every field $\F$ of characteristic different from two, $\size_\F(\ID_N)$, $\size_\F(S_{4,N})$ and
+$\size_\F(\mathrm{perm}_{4,N})$ are at most $N^{1.6692+o(1)}$.
+\end{theorem}
+
+The matrix-multiplication input is Uzna\'nski's rectangular bound~\cite{Uznanski2026}, through the integer rank
+decompositions of Zhou and Wang~\cite{ZhouWang2026}: one integer decomposition maps into every field, so no
+characteristic other than two is excluded. An independent route uses OpenAI's bounds instead.
+
+\begin{theorem}[OpenAI's inputs]\label{thm:oairoute}
+Let $c_0=211321/125000=1.690568$.
+\begin{enumerate}[label=(\alph*)]
+\item Over every field $\F$ of characteristic zero, the three polynomials have circuits of size $N^{c_0+o(1)}$.
+\item There is a finite set $S$ of primes such that the same holds over every field $\F$ with
+$\mathrm{char}\,\F\notin S\cup\{2\}$.
+\end{enumerate}
+\end{theorem}
+
+The set $S$ in (b) comes from the Lefschetz principle and is not computed. Theorem~\ref{thm:oairoute} is weaker than
+Theorem~\ref{thm:main}, but its matrix-multiplication input is independent of it, so either suffices for a
+subquadratic bound below Theorem~\ref{thm:cubes}.
+
+\begin{theorem}[no fast matrix multiplication]\label{thm:cubes}
+Over every field of characteristic different from two, $\size(\ID_N)$, $\size(S_{4,N})$ and
+$\size(\mathrm{perm}_{4,N})$ are at most $N^{1.727899+o(1)}$.
+\end{theorem}
+(The construction behind Theorem~\ref{thm:cubes} has exact exponent $c_\ast=1.72789810916\ldots$; the formal
+statement uses the rational upper bound $1.727899$.) Its simplest precursor, a per-bit decomposition giving
+$N^{\log_2(12)/2}=N^{1.7925}$, realizes the single-bit identity for the crossing tensor and the ``$\log 12$ of $4$
+bits'' count in Appendix~H of~\cite{Anthropic3SAT}; Pauli (Bell) bases for the same tensor were also used by
+Tulsyan~\cite{Tulsyan2026}, for a different cost measure.
+
+Theorem~\ref{thm:cubes} is the author's earlier ``Pauli cube'' construction (October~28, 2026); we state it for
+comparison and refer to its formalization (Section~\ref{sec:lean}). This paper proves Theorems~\ref{thm:main}
+and~\ref{thm:oairoute}. Their heart is the following conditional bound, which turns block oracles for rectangular
+products (Definition~\ref{def:oracle}) into a circuit exponent.
+
+\begin{theorem}[the construction]\label{thm:construction}
+Let $\F$ be a field with $2\ne0$ that contains a square root of $-1$. Let $\tfrac12<\mu<1$ and $w\ge2$, and put
+$m=\lceil\mu n\rceil$. Suppose that for every $\varepsilon>0$ there is $C$ such that for every $n$ there is a block
+oracle over $\F$ (Definition~\ref{def:oracle}) for $2^m\times2^{n-m}$ by $2^{n-m}\times2^m$ products with cost at
+most $C(2^m)^{w+\varepsilon}$. Then
+\[
+\size_\F(\ID_N)\le N^{C(\mu,w)+o(1)},\qquad
+C(\mu,w)=2\Hb\bigl(\tfrac14\bigr)-2\mu\,\Hb\Bigl(\frac1{4\mu}\Bigr)+\mu w ,
+\]
+where $\Hb(p)=-p\log_2p-(1-p)\log_2(1-p)$.
+\end{theorem}
+
+A block oracle is more than a matrix-multiplication algorithm over $\F$: its inputs are noncommuting, and it must
+also evaluate a trilinear middle-insertion form. Two sources supply oracles of the required cost
+(Section~\ref{sec:blocks}): straight-line programs over $\C$, so that over $\C$ any admissible exponent $w$ at aspect
+$\frac{1-\mu}{\mu}$ in the sense of Section~\ref{sec:prelim-mm} suffices; and a single rank decomposition over $\F$
+(Lemma~\ref{lem:scheme}), the source Theorem~\ref{thm:main} uses.
+
+With Uzna\'nski's bound at $\mu=\frac{18}{29}$ (aspect $\frac{11}{18}$, $w=\frac{200}{99}$) one gets
+$C=1.66916842\ldots$ (Section~\ref{sec:uz}). With OpenAI's bounds $\omega(1,0.465,1)=2$ and
+$\omega(1,0.709,1)<2.092$~\cite{OAI2026b}, interpolated at $\mu=0.6337$, one gets $C<1.6905678<c_0$
+(Section~\ref{sec:oai}); OpenAI's thin endpoint alone ($\mu=200/293$, $w=2$) gives $C=1.6938884\ldots$.
+
+\begin{remark}
+If $\omega(1,k,1)=2$ held for every $k\le1$, Theorem~\ref{thm:construction} would give exponents tending to
+$2\Hb(\tfrac14)=1.62255\ldots$ as $\mu\to\tfrac12$, the growth exponent of the number of Pauli words in corner
+classes (Section~\ref{sec:corner}). Since $\Hb\le1$, $C(\mu,w)\ge2\Hb(\frac14)$ whenever $w\ge2$, so this is the
+floor of the present cost formula. It is not a lower bound on circuit size.
+\end{remark}
+
+\subsection{Techniques}
+\emph{Corner sums of squares.} A weighted identity $\sum_\nu w_\nu f_\nu^2=(\sum X_x^2)(\sum Y_y^2)$ over the $4^n$
+real Pauli bilinear forms $f_\nu(X,Y)=X^{\mathsf T}P_\nu Y$ holds if and only if a Fourier condition holds on the
+isotropic labels (Lemma~\ref{lem:fourier}). In Jordan--Wigner coordinates~\cite{JordanWigner1928} a Pauli word is
+a product of Majorana operators, described by a symmetric part $s$ and a skew part $a$. For weights depending only
+on the class $(|s|,|a|)$ the Fourier condition becomes a small linear system with Krawtchouk
+coefficients~\cite{Krawtchouk1929,MacWilliamsSloane1977}. We show it has a solution supported on the corner
+$\min(a,n-a)+\min(b,n-b)\le n/2$ (Theorem~\ref{thm:corner}); the proof is a duality argument in which a dual
+certificate would give a polynomial of degree at most $2n$ divisible by $(1-X^4)^{\lfloor n/2\rfloor+1}$.
+
+\emph{Majorana blocks.} Swapping two Majorana modes is a conjugation by a single Clifford gate $1+cP_u$. A block of
+$2m$ Majoranas can be moved onto the first $m$ qubits, after which every word supported in the block (up to a fixed
+shift) has the form $P_{\alpha,\beta}\otimes I$. The corresponding bilinear forms are, after one shared change of
+basis of the inputs, Walsh coefficients along shifted diagonals of a single $2^m\times 2^m$ matrix product of
+$2^m\times 2^{n-m}$ and $2^{n-m}\times 2^m$ matrices. Hrube\v{s}'s middle-insertion term $f\star f^{yx}$ also
+collapses to a single trilinear form. So one block costs one rectangular matrix product plus $O(m4^m)$.
+
+\emph{Covering and entropy.} Each corner class is covered by blocks greedily, and an entropy calculation
+(Lemma~\ref{lem:layout}) bounds the number of blocks by $2^{n(2\Hb(1/4)-2\mu\Hb(1/(4\mu)))+o(n)}$.
+
+\emph{Matrix multiplication and characteristic.} Both routes reduce to one fixed rank decomposition of a matrix
+tensor $\langle a,b,a\rangle$, from which a recursive bilinear algorithm supplies every block product. Zhou and
+Wang's formalization provides integer decompositions along Uzna\'nski's curve, which work in every field. OpenAI's
+bounds are statements about straight-line programs over $\C$: a program of cost $s$ gives a rank bound $2s$, ranks
+multiply under tensor products, and one fixed product decomposition is an existential first-order statement with
+integer coefficients, so it transfers by the Lefschetz principle.
+
+\subsection{Formal verification}
+The theorems above are formalized in Lean~4~\cite{Lean4} with Mathlib~\cite{Mathlib2020}. The formalization imports
+OpenAI's Lean library for its matrix-multiplication bounds~\cite{OAI2026lean} unchanged, and Zhou and Wang's Lean
+library~\cite{ZhouWang2026} with two declaration-level changes needed by our stricter compiler settings, so the
+matrix-multiplication inputs are themselves machine-checked. The top-level Lean theorems, the definitions they use, and the
+checks performed are listed in Section~\ref{sec:lean}.
+
+\section{Preliminaries}
+
+\subsection{Noncommutative circuits}
+\begin{definition}[Hrube\v{s}~\cite{Hrubes2026}]\label{def:circuit}
+A \emph{noncommutative circuit} over $\F$ is a directed acyclic graph whose in-degree-zero nodes are labelled by
+variables or elements of $\F$, and whose other nodes have in-degree two and are labelled $+$ or $\times$, the two
+edges into a $\times$ node being labelled left and right. Each node computes a polynomial in the free algebra
+$\F\langle x_1,\dots\rangle$; the circuit computes $f$ if some node does; its size is its number of nodes.
+\end{definition}
+
+The polynomials of interest are $\ID_N$ above,
+\[
+S_{4,N}=\sum_{(i_1,\dots,i_4)}x_{i_1}x_{i_2}x_{i_3}x_{i_4},\qquad
+\mathrm{perm}_{4,N}=\sum_{(i_1,\dots,i_4)}x_{1,i_1}x_{2,i_2}x_{3,i_3}x_{4,i_4},
+\]
+with sums over ordered quadruples of pairwise distinct elements of $[N]$. Hrube\v{s}~\cite[Cor.~27]{Hrubes2026}
+reduces $S_{4,N}$ and $\mathrm{perm}_{4,N}$ to $\ID_N$ with linear overhead (through $\ID^\ast$ and
+Proposition~26 there); we use these reductions as they are, so it suffices to bound $\size(\ID_N)$. Since setting
+variables to zero does not increase size, it also suffices to treat $N=2^n$, indexing the variables by bit vectors
+$x\in\F_2^n$.
+
+\subsection{From sums of squares to circuits}
+For a bilinear form $f=\sum_{x,y}a_{xy}X_xY_y$ and a new variable $z$, Hrube\v{s}~\cite{Hrubes2026} defines the
+noncommutative polynomials
+\[
+f^{xy}=\sum a_{xy}X_xY_y,\quad f^{yx}=\sum a_{xy}Y_yX_x,\quad f\star z=\sum a_{xy}X_xzY_y,\quad
+f^{[2]}=\tfrac12\bigl(f^{xy}f^{xy}+f\star f^{yx}\bigr).
+\]
+\begin{lemma}[Hrube\v{s}, proof of~{\cite[Lemma~22]{Hrubes2026}}]\label{lem:hrubes}
+Let $2\ne0$ in $\F$. If $(\sum_xX_x^2)(\sum_yY_y^2)=\sum_kw_kf_k^2$ as commutative polynomials, with bilinear $f_k$,
+then $\sum_kw_kf_k^{[2]}=\ID$ in the free algebra.
+\end{lemma}
+The cost of $\sum_k w_kf_k^{[2]}$ is the cost of the forms $f^{xy}_k$ and $f^{yx}_k$ plus that of the single
+trilinear form $\sum_kw_kf_k\star z_k$ evaluated at $z_k=f_k^{yx}$; Hrube\v{s} bounds the latter by a
+Baur--Strassen argument~\cite{BaurStrassen1983}. Our blocks make all three cheap at once (Section~\ref{sec:blocks}).
+
+\subsection{Pauli forms in bit coordinates}
+A \emph{word} is $\nu\in\{I,X,Z,J\}^n$, where $J=ZX=-XZ$; write $x_\nu,z_\nu\in\F_2^n$ for its $X$- and $Z$-parts. Its
+real Pauli matrix, indexed by $\F_2^n$, is
+\[
+P_\nu[x,y]=[\,y=x+x_\nu\,]\,(-1)^{z_\nu\cdot x},
+\]
+and we write $P_{\alpha,\beta}$ for the matrix with $X$-part $\alpha$ and $Z$-part $\beta$. These satisfy
+$P_{\alpha,\beta}P_{\alpha',\beta'}=(-1)^{\beta'\cdot\alpha}P_{\alpha+\alpha',\beta+\beta'}$. The \emph{Pauli
+form} of $\nu$ is $f_\nu(X,Y)=X^{\mathsf T}P_\nu Y$.
+
+\subsection{Rectangular matrix multiplication}\label{sec:prelim-mm}
+For $0\le k\le1$, an exponent $\tau$ is \emph{admissible at aspect $k$} if for every $\varepsilon>0$ there is $C$
+such that for every $n\ge1$ some straight-line program (additions, subtractions, multiplications, constants)
+multiplies $n\times\lceil n^k\rceil$ by $\lceil n^k\rceil\times n$ matrices with at most $C n^{\tau+\varepsilon}$
+operations. We write $\omega(1,k,1)$ for the infimum of admissible exponents and $\alpha=\sup\{k:\omega(1,k,1)=2\}$.
+These are OpenAI's definitions~\cite{OAI2026lean}, which our Lean development imports.
+
+\section{The corner sum of squares}\label{sec:corner}
+
+\begin{lemma}[Fourier criterion]\label{lem:fourier}
+Let $2\ne0$ in $\F$ and $w:\{\text{words}\}\to\F$. Put
+\[\hat w(t,b)=\sum_\nu w_\nu(-1)^{z_\nu\cdot t+x_\nu\cdot b}.\]
+If $\hat w(t,b)=2^n[t=b=0]$ for all $t,b\in\F_2^n$ with $t\cdot b=0$, then
+$(\sum_xX_x^2)(\sum_yY_y^2)=\sum_\nu w_\nu f_\nu(X,Y)^2$.
+\end{lemma}
+\begin{proof}
+Comparing coefficients of $X_xY_yX_uY_v$, the identity is equivalent to
+$\sum_\nu w_\nu(P_\nu[x,y]P_\nu[u,v]+P_\nu[x,v]P_\nu[u,y])=2[x=u,\,y=v]$. Both products vanish unless
+$d:=x+u=y+v$, and then the left side is $g(x+y,d)+g(x+y+d,d)$ with
+$g(\alpha,d)=\sum_{x_\nu=\alpha}w_\nu(-1)^{z_\nu\cdot d}$. Taking the Fourier transform in $\alpha$, the required
+identity $g(\alpha,d)+g(\alpha+d,d)=2[d=0]$ reads $\hat w(d,b)(1+(-1)^{b\cdot d})=2\cdot2^n[d=0][b=0]$, which is
+automatic when $b\cdot d=1$ and is the hypothesis when $b\cdot d=0$.
+\end{proof}
+
+\subsection{Majorana coordinates}
+Jordan--Wigner coordinates~\cite{JordanWigner1928} write each word as $\nu=\nu(s,a)$ with $s,a\in\F_2^n$ via
+\[
+x_\nu=s+a,\qquad (z_\nu)_j=a_j+\sum_{k>j}(s+a)_k .
+\]
+This is a bijection; $P_{\nu(s,a)}$ is, up to sign, the product of the symmetric Majoranas $Z\cdots ZX_j$ over the
+support of $s$ and the skew Majoranas $Z\cdots ZJ_j$ over the support of $a$. The \emph{class} of $\nu$ is
+$(|s|,|a|)$. In these coordinates the commutation form is
+$\langle(s,a),(s',a')\rangle=(|s|+|a|)(|s'|+|a'|)+s\cdot s'+a\cdot a'$, and the label $(t,b)$ with Majorana
+coordinates $(s',a')$ is isotropic ($t\cdot b=0$) if and only if
+$q(|s'|,|a'|):=|a'|+\binom{|s'|+|a'|}{2}\equiv0\pmod 2$.
+
+For class-constant weights $w_\nu=2^nW(|s|,|a|)$, summing characters over a class gives Krawtchouk
+numbers $K_a(c)=[z^a](1-z)^c(1+z)^{n-c}$, and the Fourier criterion becomes the finite linear system
+\begin{equation}\label{eq:system}
+\sum_{a,b=0}^nW(a,b)\,(-1)^{(a+b)(c+d)}K_a(c)K_b(d)=[c=d=0]\qquad(0\le c,d\le n,\ q(c,d)=0).
+\end{equation}
+
+\begin{theorem}[corner feasibility]\label{thm:corner}
+Let $\F$ have $2\ne0$ and contain $i$ with $i^2=-1$. For every $n$, the system \eqref{eq:system} has a solution
+$W$ supported on the \emph{corner}
+\[
+\mathcal C_n=\{(a,b):\ \min(a,n-a)+\min(b,n-b)\le\lfloor n/2\rfloor\}.
+\]
+Consequently there are weights on the $4^n$ words, supported on corner classes, with
+$(\sum X_x^2)(\sum Y_y^2)=\sum_\nu w_\nu f_\nu(X,Y)^2$.
+\end{theorem}
+\begin{proof}
+If not, linear duality gives $y(c,d)$, supported on the pairs with $q(c,d)=0$, with $y(0,0)\ne0$ and
+$\sum_{c,d}y(c,d)(-1)^{(a+b)(c+d)}K_a(c)K_b(d)=0$ for every $(a,b)\in\mathcal C_n$. Put
+$P_a(X)=(1-X)^a(1+X)^{n-a}+(1+X)^a(1-X)^{n-a}$ and
+$\Psi=\sum_{a,b}\mathrm{coef}(a,b)\,P_aP_b$, where $\mathrm{coef}(a,b)$ is the left side above.
+
+\emph{$\Psi$ is divisible by $(1-X^2)^m$, $m=\lfloor n/2\rfloor+1$.} For $(a,b)\in\mathcal C_n$ the coefficient
+vanishes; otherwise $((1-X)(1+X))^{\min(a,n-a)+\min(b,n-b)}$ divides $P_aP_b$, and the exponent is at least $m$.
+
+\emph{$\Psi$ is a multiple of $G=\sum_{c,d\ \text{even}}y(c,d)X^{c+d}$.} Exchanging the sums gives
+$\Psi=\sum_{c,d}y(c,d)\,S_{c,c+d}S_{d,c+d}$, where $S_{c,e}=\sum_a(-1)^{ae}K_a(c)P_a$. The homogenization
+identity $\sum_aK_a(c)s^at^{n-a}=(t-s)^c(t+s)^{n-c}$ gives
+\[
+S_{c,e}=\begin{cases}\bigl((2X)^c+(-2X)^c\bigr)\,2^{n-c}&e\text{ even},\\
+2^c\bigl((2X)^{n-c}+(-2X)^{n-c}\bigr)&e\text{ odd},\end{cases}
+\]
+so $S_{c,c+d}S_{d,c+d}=4\cdot2^{2n}X^{c+d}$ when $c$ and $d$ are
+both even and $0$ otherwise. Hence $\Psi=4\cdot2^{2n}G$.
+
+\emph{$G$ is divisible by $(1+X^2)^m$.} For even $c,d$, $q(c,d)=0$ forces $4\mid c+d$, so $G(iX)=G(X)$; applying
+$X\mapsto iX$ to $(1-X^2)^m\mid G$ gives $(1+X^2)^m\mid G$.
+
+Since $2\ne0$, $(1-X^2)^m$ and $(1+X^2)^m$ are coprime, so $(1-X^4)^m\mid G$. But $\deg G\le2n<4m$, so $G=0$
+and $y(0,0)=G(0)=0$, a contradiction. The second sentence follows from Lemma~\ref{lem:fourier}.
+\end{proof}
+
+The number of words in corner classes is $\sum_{(a,b)\in\mathcal C_n}\binom na\binom nb=2^{2\Hb(1/4)n+O(\log n)}$:
+the maximum is at $a,b\approx n/4$.
+
+\section{Majorana blocks}\label{sec:blocks}
+
+\subsection{Moving Majoranas by conjugation}
+Index the $2n$ Majoranas by $k\in\{1,\dots,2n\}$ and identify a word with its Majorana vector $A\in\F_2^{2n}$ (the
+pair $(s,a)$); write $P_A$ for its matrix. For $k\ne l$ let $u=e_k+e_l$, choose $c\in\{1,i\}$ with
+$(cP_u)^2=-1$, and put $G_{kl}=1+cP_u$, so $G_{kl}^{-1}=\tfrac12(1-cP_u)$.
+
+\begin{lemma}\label{lem:swap}
+$G_{kl}P_AG_{kl}^{-1}=\lambda\,P_{\mathrm{swap}_{kl}(A)}$ for some $\lambda\ne0$.
+\end{lemma}
+\begin{proof}
+$P_u$ and $P_A$ commute or anticommute according to $\langle u,A\rangle=A_k+A_l$. If they commute, conjugation
+fixes $P_A$ and $\mathrm{swap}_{kl}$ fixes $A$. If they anticommute, $G P_AG^{-1}=-P_A\,cP_u=\lambda P_{A+u}$, and
+$A+u=\mathrm{swap}_{kl}(A)$.
+\end{proof}
+
+A \emph{block} is a set $U$ of $2m$ Majoranas; the \emph{canonical block} $T$ consists of the $2m$ Majoranas of
+the first $m$ qubits. Composing at most $|U\setminus T|\le2m$ swaps gives a matrix $\Gamma$ with
+$\Gamma P_A\Gamma^{-1}=\lambda_AP_{A'}$, $A'$ supported in $T$, for every $A$ supported in $U$. For a fixed
+\emph{shift} $\sigma\in\F_2^{2n}$, $P_{A+\sigma}=\pm P_AP_\sigma$, hence
+\begin{equation}\label{eq:blockword}
+P_{A+\sigma}=\lambda\,\Gamma^{-1}P_{A'}\,(\Gamma P_\sigma)\qquad(\lambda\ne0).
+\end{equation}
+
+\subsection{One block is one rectangular product}
+Since $\Gamma^{-1}$ and $\Gamma P_\sigma$ are matrices with entries in the coefficient field,
+\eqref{eq:blockword} transforms all three
+noncommutative forms of a block word at once: with $X'=(\Gamma^{-1})^{\mathsf T}X$ and $Y'=\Gamma P_\sigma Y$,
+\[
+f^{xy}_{A+\sigma}=\lambda\,f^{xy}_{A'}(X',Y'),\quad f^{yx}_{A+\sigma}=\lambda\,f^{yx}_{A'}(X',Y'),\quad
+f_{A+\sigma}\star z=\lambda\,(f_{A'}\star z)(X',Y').
+\]
+Each gate factor $c_1+c_2P$ has two nonzero entries per row, so $X'$ and $Y'$ cost $O(m2^n)$ gates. Since $A'$ is
+supported on the first $m$ qubits, $P_{A'}=P_{\alpha,\beta}$ with $\alpha,\beta$ supported there; splitting
+$x=(p,s)\in\F_2^m\times\F_2^{n-m}$,
+\[
+f^{xy}_{\alpha,\beta}(X',Y')=\sum_{p}(-1)^{\beta\cdot p}M[p,p+\alpha],\qquad
+M[p,q]=\sum_{s\in\F_2^{n-m}}X'(p,s)\,Y'(q,s).
+\]
+So the $xy$-forms of all words of the block are Walsh coefficients along shifted diagonals of one product $M$ of a
+$2^m\times2^{n-m}$ and a $2^{n-m}\times2^m$ matrix; the $yx$-forms come from the swapped product $M'$. Grouping the
+block's words by their canonical label $(\alpha,\beta)$, the middle-insertion terms combine into one trilinear
+form $\sum_{p,s,q}X'(p,s)\,Q[p,q]\,Y'(q,s)$ with $Q[p,q]=\sum_b(-1)^{p\cdot b}g(p+q,b)$ for suitable values $g$.
+
+\begin{definition}\label{def:oracle}
+A \emph{block oracle} with cost $M$ for $2^m\times2^r$ by $2^r\times2^m$ products is a family of circuits that, from
+arbitrary available values $X'(p,s)$, $Y'(q,s)$ and $Q[p,q]$ in the free algebra ($p,q\in\F_2^m$, $s\in\F_2^r$),
+compute all entries $\sum_sX'(p,s)Y'(q,s)$, and the single value $\sum_{p,s,q}X'(p,s)Q[p,q]Y'(q,s)$, each with at
+most $M$ further gates.
+\end{definition}
+
+\begin{proposition}\label{prop:block}
+Given a block oracle with cost $M$, the sum $\sum_\nu c_\nu f_\nu^{[2]}$ over all words of a block, with arbitrary
+coefficients, takes at most $O(m2^n)+3M+15(m+1)4^m+2$ gates, independently of the number of words.
+\end{proposition}
+\begin{proof}
+Products and swapped products: $2M$. Walsh--Hadamard transforms of all $2^m$ shifted diagonals: $O(m4^m)$ via the
+Kronecker structure. Squares and the regrouped coefficients: $O(4^m)$. Middle insertion: $M$, after $O(m4^m)$ to
+form $Q$.
+\end{proof}
+
+Block oracles come from two sources.
+\begin{enumerate}[label=(\roman*)]
+\item \emph{Programs (over $\C$).} A correct straight-line program of cost $s$ for the
+$2^m\times2^{n-m}\times2^m$ product gives a block oracle with cost $960s$. Each register is split into its constant,
+$x$-linear, $y$-linear and \emph{ordered} $xy$-bilinear parts (the product rule
+$\partial^2(pq)=p(0)\partial^2q+q(0)\partial^2p+\partial_xp\,\partial_yq+\partial_xq\,\partial_yp$ keeps the $x$
+factor on the left), which yields all ordered products with $91s$ gates; the middle insertion is obtained by reverse
+differentiation of the program, in the spirit of Baur--Strassen~\cite{BaurStrassen1983} and Hrube\v{s}'s
+Lemma~20~\cite{Hrubes2026}. The polynomial semantics uses that $\C$ is infinite.
+\item \emph{Rank decompositions (any field).} A decomposition
+$\langle a,b,a\rangle=\sum_{r\le R}u_r\otimes v_r\otimes w_r$ gives the classical recursive bilinear algorithm,
+which is valid in any noncommutative algebra because scalars are central and $x$-factors stay on the left; the
+trilinear identity
+$\sum_{i,j,l}X_{ij}Q_{il}Y_{jl}=\sum_r\bigl(\sum u_rX\bigr)\bigl(\sum w_rQ\bigr)\bigl(\sum v_rY\bigr)$ recurses the
+same way. With $t$ levels this costs at most $(7(2ab+a^2)+6)(t+1)\max(R,ab,a^2)^t$.
+\end{enumerate}
+
+\section{Covering the corner classes}\label{sec:cover}
+
+Fix $\tfrac12<\mu<1$ and $m=\lceil\mu n\rceil$. The words of class $(a,b)$ are exactly those with Majorana vector
+$A+\sigma_{a,b}$, where $\sigma_{a,b}$ complements the symmetric part if $a>n-a$ and the skew part if $b>n-b$, and
+$A$ has weights $(a_0,b_0)=(\min(a,n-a),\min(b,n-b))$. A block with $u_s$ symmetric and $u_a$ skew Majoranas
+($u_s+u_a=2m$) contains $\binom{u_s}{a_0}\binom{u_a}{b_0}$ of them.
+
+\begin{lemma}[greedy cover]\label{lem:cover}
+For $a_0\le u_s\le n$ and $b_0\le u_a\le n$ there is a family of at most
+\[
+1+2n\,\frac{\binom n{a_0}\binom n{b_0}}{\binom{u_s}{a_0}\binom{u_a}{b_0}}
+\]
+blocks $(U_s,U_a)$ with $|U_s|=u_s$, $|U_a|=u_a$ such that every pair $(S,T)$ with $|S|=a_0$, $|T|=b_0$ has
+$S\subseteq U_s$, $T\subseteq U_a$ for some block of the family.
+\end{lemma}
+\begin{proof}
+Every pair lies in $D=\binom{n-a_0}{u_s-a_0}\binom{n-b_0}{u_a-b_0}$ of the $\binom n{u_s}\binom n{u_a}$ blocks, and
+$\binom n{u}\binom u{a_0}=\binom n{a_0}\binom{n-a_0}{u-a_0}$. The greedy algorithm covers at least a fraction
+$D/\#\text{blocks}$ of the remaining pairs at each step, so $1+(\#\text{blocks}/D)\ln\#\text{pairs}$ blocks
+suffice, and $\ln\#\text{pairs}\le 2n$.
+\end{proof}
+
+\begin{lemma}[layout]\label{lem:layout}
+Let $g_\mu=2\Hb(\tfrac14)-2\mu\Hb(\tfrac1{4\mu})$. For every $\delta>0$ and all large $n$, every corner class
+$(a,b)\in\mathcal C_n$ admits $u_s+u_a=2m$, $u_s,u_a\le n$, $a_0\le u_s$, $b_0\le u_a$, with
+\[
+\binom na\binom nb\le2^{n(g_\mu+\delta)}\binom{u_s}{a_0}\binom{u_a}{b_0}.
+\]
+\end{lemma}
+\begin{proof}[Proof sketch]
+Write $L=2\mu$, $\alpha=a_0/n\le\beta=b_0/n$, $t=\alpha+\beta\le\frac12$. If $\beta/t\le1/L$, take
+$u_s/n=L\alpha/t$, $u_a/n=L\beta/t$; concavity of entropy bounds the ratio by
+$2^{n(2\Hb(t/2)-L\Hb(t/L))}$, and $2\Hb(t/2)-L\Hb(t/L)$ is nondecreasing in $t$, so it is at most $g_\mu$. If
+$\beta/t>1/L$, take $u_a=n$, $u_s=(L-1)n$; the exponent $\Hb(\alpha)-(L-1)\Hb(\alpha/(L-1))$ is increasing in $\alpha$
+and agrees with the first case on the boundary. The formal proof works with exact binomials: a Vandermonde-type
+identity $\sum_u\binom u{a_0}\binom{M-u}{b_0}=\binom{M+1}{a_0+b_0+1}$ chooses the integer layout, the bounds
+$\binom NK K^K(N-K)^{N-K}\le N^N\le(N+1)\binom NKK^K(N-K)^{N-K}$ convert to entropy with only a polynomial loss,
+and convexity of $x\log x$ reduces the exponent to the extreme case $a_0+b_0=\lfloor n/2\rfloor$; the threshold
+is $n_0=\lceil54/(\delta\ln2)^3\rceil+1$.
+\end{proof}
+
+\section{Assembling the circuit}\label{sec:assembly}
+
+\begin{proof}[Proof of Theorem~\ref{thm:construction}]
+Let $N=2^n$. By Theorem~\ref{thm:corner} and Lemma~\ref{lem:hrubes}, $\ID=\sum_\nu w_\nu f_\nu^{[2]}$ with $w$
+supported on corner classes. For each corner class choose the layout of Lemma~\ref{lem:layout} and the cover of
+Lemma~\ref{lem:cover}; assign each word to one covering block. By Proposition~\ref{prop:block} each block costs
+$O(m2^n)+3M+O(m4^m)$, with $M\le C_\varepsilon(2^m)^{w+\varepsilon}$ by hypothesis. There are at most $(n+1)^2$
+classes and, per class, at most $1+2n2^{n(g_\mu+\delta)}$ blocks. Since $\mu>\frac12$ and $w\ge2$,
+$2^n\le4^m\le(2^m)^w$, so the total is
+\[
+2^{n(g_\mu+\delta)+\mu n(w+\varepsilon)+O(\log n)}=N^{C(\mu,w)+o(1)}.
+\]
+Arbitrary $N$ follows by padding to the next power of two.
+\end{proof}
+
+\section{Matrix multiplication inputs}\label{sec:mm}
+
+Both routes supply the block oracles of Theorem~\ref{thm:construction} from one fixed rank decomposition, through
+source~(ii) of Section~\ref{sec:blocks}, and both pass to the base field through the regular representation.
+
+\begin{lemma}[one decomposition suffices]\label{lem:scheme}
+Let $\frac12<\mu<1$ and $k=\frac{1-\mu}{\mu}$. Let $E$ be a field with $2\ne0$ that contains a square root of $-1$.
+Suppose that over $E$ the tensor $\langle a,b,a\rangle$, with $a\ge2$ and $b\ge a^k$, has rank at most $\rho$,
+and that $\max(\rho,ab,a^2)\le a^\tau$. Then $\size_E(\ID_N)\le N^{C(\mu,\tau)+o(1)}$.
+\end{lemma}
+\begin{proof}
+Let $m=\lceil\mu n\rceil$ and let $t$ be least with $a^t\ge2^m$. Since $n-m\le mk$, also
+$b^t\ge a^{kt}\ge2^{n-m}$, so the block products of size $2^m\times2^{n-m}\times2^m$ embed, by padding with zeros,
+in $\langle a^t,b^t,a^t\rangle$. Source~(ii) gives block oracles with cost at most
+$(7(2ab+a^2)+6)(t+1)\,a^{t\tau}$, and $a^{t\tau}\le a^\tau(2^m)^\tau$. Since $t=O(m)$, this is
+$O((2^m)^{\tau+\varepsilon})$ for every $\varepsilon>0$, and Theorem~\ref{thm:construction} applies.
+\end{proof}
+
+\begin{lemma}[descent]\label{lem:descent}
+If $E/\F$ is a finite extension of degree $d$, then $\size_\F(\ID_N)\le d^2(2d+1)\,\size_E(\ID_N)$.
+\end{lemma}
+\begin{proof}
+$E$ embeds in $d\times d$ matrices over $\F$ by its regular representation, so a circuit over $E$ becomes a
+circuit over $\F$ computing a $d\times d$ matrix of noncommutative polynomials, each gate simulated entrywise with at
+most $d^2(2d+1)$ gates. A diagonal entry of the image of $\ID$ is $\ID$ itself.
+\end{proof}
+
+\subsection{Uzna\'nski's curve over the integers}\label{sec:uz}
+Let $f(k)=2$ for $0\le k\le\frac12$ and $f(k)=1+k+\frac1{4k}$ for $k>\frac12$. Uzna\'nski~\cite{Uznanski2026}
+proved $\omega(1,k,1)\le f(k)$; in particular $\alpha\ge\frac12$ and $\omega\le\frac94$, the bound OpenAI had proved
+over $\C$ shortly before~\cite{OAI2026a}. Zhou and Wang~\cite{ZhouWang2026} extended the bound to every associative
+ring, with integer bilinear algorithms, and formalized the extension in Lean. We use one theorem of their
+formalization.
+
+\begin{theorem}[Uzna\'nski~\cite{Uznanski2026}; Zhou and Wang~\cite{ZhouWang2026}]\label{thm:uz}
+For every $k\ge0$ and $\varepsilon>0$ there are integers $a\ge2$, $b\ge a^k$ and $\rho\ge\max(ab,a^2)$, and
+integer vectors $u_r,v_r,w_r$ $(r\le\rho)$, such that $\langle a,b,a\rangle=\sum_{r\le\rho}u_r\otimes v_r\otimes
+w_r$ over $\Z$ and $\log\rho/\log a<f(k)+\varepsilon$.
+\end{theorem}
+
+In Lean this is \lean{Matmul.RectangularRankBridge.exists\_scheme\_certificate}. Its proof bounds the asymptotic
+rank of integer matrix tensors through spectral points in the sense of Strassen~\cite{Strassen1988}, following
+Uzna\'nski's shared-leg entropy argument, and extracts a single decomposition with the given slack.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Take $\mu=\frac{18}{29}$. Then $k=\frac{1-\mu}{\mu}=\frac{11}{18}$ and $f(k)=1+\frac{11}{18}+\frac{9}{22}=\frac{200}{99}$.
+Let $\varepsilon_0=10^{-5}$ and fix the decomposition of Theorem~\ref{thm:uz} for this $k$ and $\varepsilon=\varepsilon_0$.
+
+Let $\F$ have characteristic other than two, and let $E$ be $\F$ with a root of $X^2+1$ adjoined (or $E=\F$ if
+$\F$ already has one), so $[E:\F]\le2$. The integer decomposition maps into $E$, and
+$\max(\rho,ab,a^2)=\rho\le a^{\tau}$ with $\tau=\frac{200}{99}+\varepsilon_0$. Lemma~\ref{lem:scheme} gives
+$\size_E(\ID_N)\le N^{C(\mu,\tau)+o(1)}$, where, since $C$ is affine in $w$,
+\[
+C(\mu,\tau)=C\bigl(\tfrac{18}{29},\tfrac{200}{99}\bigr)+\tfrac{18}{29}\varepsilon_0
+=1.66916842\ldots+0.0000062\ldots<1.6692 .
+\]
+The value $C(\frac{18}{29},\frac{200}{99})+10^{-5}<1.6692$ is certified with rational enclosures of $\log2$,
+$\log\frac32$, $\log\frac{36}{29}$ and $\log\frac{72}{43}$. Lemma~\ref{lem:descent} transfers the bound to $\F$, and
+Hrube\v{s}'s reductions give $S_{4,N}$ and $\mathrm{perm}_{4,N}$.
+\end{proof}
+
+The choice $\mu=\frac{18}{29}$ is a rational point near the optimum: over $\mu$, the exponent with $w=f(k)$ is
+minimized near $\mu\approx0.6207$, at $1.669168\ldots$.
+
+\subsection{OpenAI's bounds}\label{sec:oai}
+
+\begin{theorem}[OpenAI~\cite{OAI2026b,OAI2026lean}]\label{thm:oai}
+Over $\C$: $\alpha>0.465$, so $\omega(1,\tfrac{93}{200},1)=2$; and $\omega(1,0.709,1)<\tfrac{523}{250}=2.092$.
+\end{theorem}
+These are formalized in OpenAI's Lean library, which we import unchanged. The first is used through the strict
+supremum: some aspect $k>0.465$ has $\omega(1,k,1)=2$, and admissibility is monotone in the aspect.
+
+\begin{lemma}[programs give ranks]\label{lem:rank}
+A correct straight-line program of cost $s$ for $a\times b$ by $b\times c$ matrix multiplication over $\C$ yields
+a rank decomposition of the matrix-multiplication tensor $\langle a,b,c\rangle$ of size $2s$.
+\end{lemma}
+\begin{proof}
+This is the classical comparison of multiplicative and bilinear complexity
+(Strassen~\cite{Strassen1973}; see~\cite[Ch.~14]{BCS1997}): by the product rule above, the bilinear part of every
+register is a linear combination of the $2\cdot\#\{\times\text{ gates}\}$ rank-one forms
+$\partial_xp\otimes\partial_yq$, $\partial_xq\otimes\partial_yp$, and correctness identifies the bilinear parts of
+the outputs with the tensor.
+\end{proof}
+
+\begin{lemma}[rational interpolation]\label{lem:interp}
+If $\tau_i\ge2$ is admissible at aspect $k_i\in[0,1]$ $(i=1,2)$ over $\C$, then for $p,q\in\N$ with $p+q>0$ the
+exponent $\frac{p\tau_1+q\tau_2}{p+q}$ is admissible at aspect $\frac{pk_1+qk_2}{p+q}$.
+\end{lemma}
+This is a special case of the classical convexity of $\omega(1,k,1)$ (Lotti and Romani~\cite{LottiRomani1983}).
+\begin{proof}
+Fix $\varepsilon>0$. For large $t$ take programs for sizes $n_1=2^{tp}$ and $n_2=2^{tq}$ at the two endpoints,
+convert them to rank decompositions (Lemma~\ref{lem:rank}), and take their tensor product: a decomposition of
+$\langle a,b,a\rangle$ with $a=2^{t(p+q)}$, $b\ge a^{k}$, and rank at most
+$4C_1C_2\,a^{\tau+\varepsilon}\le a^{\tau+2\varepsilon}$ once $t$ is large. The block recursion
+($\langle a,b,a\rangle\otimes$ a program for any size) turns this single decomposition into an admissible exponent
+$\tau+2\varepsilon$.
+\end{proof}
+
+With $p=829933$ and $q=716295$, the endpoints $(\frac{93}{200},2)$ and $(\frac{709}{1000},\frac{523}{250})$
+interpolate to aspect $k^\ast=\frac{3663}{6337}=\frac{1-\mu}{\mu}$ for $\mu=\frac{6337}{10000}$, with exponent
+$w^\ast=\frac{157917757}{77311400}=2.0426192\ldots$. Then
+\[
+C(\mu,w^\ast)=1.69056770515\ldots<1.690568-10^{-7},
+\]
+certified with rational enclosures of $\log2$, $\log\frac32$, $\log\frac{10000}{6337}$ and
+$\log\frac{7674}{6337}$. This proves Theorem~\ref{thm:oairoute}(a) over $\C$; every field of characteristic zero is
+covered by (b), whose set $S$ contains only primes.
+
+\begin{remark}
+The same formula with only the rectangular bounds of Alman et al.~\cite{ADVWXXZ2024} gives $C<1.7118$, and
+OpenAI's thin endpoint alone ($\mu=\frac{200}{293}$, $w=2$) gives $1.6938884\ldots$; the latter is also formalized.
+\end{remark}
+
+\subsection{Other characteristics for OpenAI's route}\label{sec:charp}
+
+\begin{proof}[Proof of Theorem~\ref{thm:oairoute}(b)]
+Let $\varepsilon_0=10^{-8}$. The proof of Lemma~\ref{lem:interp} produces one rank decomposition over $\C$ of a
+fixed tensor $\langle a,b,a\rangle$, with $a^{k^\ast}\le b$ and $\max(R,ab,a^2)\le a^{w^\ast+2\varepsilon_0}$.
+Its existence is an existential first-order sentence in the language of rings with integer coefficients, true in
+$\C$. By completeness of the theory of algebraically closed fields of characteristic zero and the Lefschetz
+principle, it holds in every algebraically closed field of characteristic $0$ or $p\notin S$, for a finite set $S$
+of primes.
+
+Let $\F$ have characteristic $0$ or $p\notin S\cup\{2\}$. The decomposition exists over the algebraic closure; its
+finitely many coefficients and a square root of $-1$ generate a finite extension $E/\F$. Lemma~\ref{lem:scheme}
+gives $\size_E(\ID_N)\le N^{C(\mu,w^\ast+2\varepsilon_0)+o(1)}$, and
+$C(\mu,w^\ast+2\varepsilon_0)=C(\mu,w^\ast)+2\mu\varepsilon_0<c_0$. Lemma~\ref{lem:descent} transfers the bound to
+$\F$, and Hrube\v{s}'s reductions give $S_{4,N}$ and $\mathrm{perm}_{4,N}$.
+\end{proof}
+
+The argument is not specific to the numerical choice.
+
+\begin{theorem}[parametric field transfer]\label{thm:fieldtransfer}
+Let $\frac12<\mu<1$ and let $w$ be an admissible rectangular exponent over $\C$ at aspect $\frac{1-\mu}{\mu}$.
+\begin{enumerate}[label=(\alph*)]
+\item If $c\ge1$ and $C(\mu,w)<c$, there is a finite set $S$ of primes such that the three circuit bounds hold at
+exponent $c$ over every field of characteristic zero or characteristic outside $S\cup\{2\}$. The set $S$ does not
+depend on the field or on the slack $\varepsilon$ in the circuit bound.
+\item If $C(\mu,w)\ge1$, the three bounds hold at the exact exponent $C(\mu,w)$ over every field of characteristic
+zero, whether or not it contains a square root of $-1$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+For (a), put $\eta=(c-C(\mu,w))/(4\mu)>0$. The proof of Lemma~\ref{lem:interp}, with one endpoint, gives one rank
+decomposition with exponent at most $w+2\eta$; transfer it and descend as above. The resulting exponent is
+$C(\mu,w+2\eta)=C(\mu,w)+2\mu\eta=\frac12(C(\mu,w)+c)<c$. For (b), apply (a) with $c=C(\mu,w)+\delta$ for every
+$\delta>0$; a field of characteristic zero avoids every exceptional set. Given slack $\varepsilon$, use
+$\delta=\varepsilon/2$ and slack $\varepsilon/2$.
+\end{proof}
+Part~(b) does not give one finite exceptional set in positive characteristic at the exact exponent: the sets
+produced as $\delta\to0$ need not have a finite union.
+
+No transfer of $\alpha>0.465$ itself to positive characteristic is known; OpenAI states explicitly that none is
+asserted~\cite[\S14]{OAI2026b}, because $\alpha$ requires decompositions of every accuracy. This argument needs only
+one, because the exponent has slack. This is also why $S$ is not computed. Theorem~\ref{thm:main} makes the
+question moot for the circuit bound, since its decompositions have integer coefficients from the start.
+
+\section{Formal verification}\label{sec:lean}
+
+\subsection{What is checked}
+The development uses Lean~4.34.1 and Mathlib (commit \texttt{d13f23b}). It consists of
+\begin{itemize}
+\item OpenAI's matrix-multiplication library~\cite{OAI2026lean} (509 files from \texttt{openai/math}, commit
+\texttt{7ef5c0c}), unchanged, with their SHA-256 hashes recorded;
+\item the \lean{Matmul} library of Zhou and Wang~\cite{ZhouWang2026} (64 files, commit \texttt{285f513}), with its
+license and notice files. Two of its declarations relied on Lean's automatic implicit arguments, which our build
+disables; we added the missing binder \lean{\{t : Nat\}} to each, checked that the resulting types and bodies are
+identical to the upstream elaboration, and marked the file as changed. Nothing else was changed;
+\item harfe's formalization of Brouwer's fixed-point theorem~\cite{harfe2026}, a dependency of both libraries,
+adapted to our Lean and Mathlib versions;
+\item the \lean{PauliCubes} library (about 4{,}700 lines; first written for Lean~4.33.1 and ported with the
+edits recorded in the repository), which proves Theorem~\ref{thm:cubes}, Hrube\v{s}'s
+Lemma~22 in the form of Lemma~\ref{lem:hrubes}, and the reductions for $S_{4,N}$ and $\mathrm{perm}_{4,N}$;
+\item the \lean{IDMM} library (48 files, about 7{,}600 lines) for this paper.
+\end{itemize}
+The top-level statements are:
+\begin{itemize}
+\item \lean{IDMM.id\_bound\_every\_char} (Theorem~\ref{thm:main}): for every field \lean{F : Type u} with
+$\mathtt{ringChar}\,F\ne2$, \lean{IDBoundF}, \lean{S4BoundF} and \lean{Perm4BoundF} hold over \lean{F} at
+$4173/2500=1.6692$;
+\item \lean{IDMM.main\_target : MainTarget}, i.e.\ \lean{IDBound}, \lean{S4Bound} and \lean{Perm4Bound} at
+$211321/125000$ over $\C$;
+\item \lean{IDMM.main\_target\_almost\_every\_char}: there is a finite \lean{S : Finset Nat} such that for
+every field \lean{F : Type u} with $\mathtt{ringChar}\,F\ne2$ and $\mathtt{ringChar}\,F=0\lor\mathtt{ringChar}\,F\notin S$, the same three bounds hold
+over \lean{F};
+\item \lean{IDMM.main\_target\_char\_zero}: the same bounds over every field of characteristic zero;
+\item \lean{IDMM.construction\_almost\_every\_char} and \lean{IDMM.construction\_char\_zero}:
+Theorem~\ref{thm:fieldtransfer}(a) and~(b);
+\item \lean{IDMM.thin\_main}: the bound $16939/10000$ over $\C$ from the thin endpoint alone;
+\item \lean{IDMM.construction\_target : ConditionalTarget} (Theorem~\ref{thm:construction} over $\C$, for every
+$\mu\in(\frac12,1)$ and every admissible $w$) and \lean{IDMM.construction\_gen} (any field with $2\ne0$ and
+$\sqrt{-1}$, given block oracles).
+\end{itemize}
+Every one of them depends only on Lean's axioms \lean{propext}, \lean{Classical.choice} and \lean{Quot.sound}; no
+\lean{sorry}, \lean{native\_decide} or added axiom occurs anywhere.
+
+The repository \url{https://github.com/research-notes-100/identity-polynomial-circuits} contains exactly the
+sources verified. On October~29, 2026, from 4:09 to 4:50~p.m.\ Eastern, \texttt{scripts/validate.py} ran on them,
+in order: the full \lean{lake build}; the audit modules \lean{IDMM.FinalAudit} and
+\lean{IDMM.FinalAuditEveryChar}, which print the signatures and axiom lists of the theorems above; and
+\lean{leanchecker --fresh} on both modules, which replays each module and everything it imports through the
+kernel in a fresh environment. Every stage exited with status~0. The record in \texttt{validation/release} gives
+the SHA-256 hash of every Lean source, pin file and log, and \texttt{scripts/audit.py} checks the repository
+against it and checks OpenAI's and Zhou and Wang's files against their upstream hashes. The \texttt{theorem-b}
+directory, a separate Lake project on Lean~4.33.1 and Anthropic's formalization, was checked the same day from
+4:13 to 4:52~p.m.: a full build, a check that each of its 312 constants uses only the three axioms above, and
+kernel replays of all seven of its modules, in place and with \lean{--fresh} (\texttt{validation/theorem-b}).
+
+Zhou and Wang's library and OpenAI's library declare some of the same names (integer and complex versions of shared
+modules), so they cannot be imported into one file. The proof of Theorem~\ref{thm:main} therefore uses Zhou and
+Wang's library together with the OpenAI modules it needs, but not OpenAI's top-level matrix-multiplication
+theorems; the proofs of Theorem~\ref{thm:oairoute} use OpenAI's library and not Zhou and Wang's. Each closure is
+built and checked on its own. The import closure of \lean{IDMM.id\_bound\_every\_char} contains 52 modules of Zhou
+and Wang's library, 55 of OpenAI's, 5 of harfe's, 22 of \lean{PauliCubes} and 34 of \lean{IDMM}, besides Mathlib.
+
+\subsection{The trusted definitions}
+A formal theorem is only as good as its statement. The statements rest on the following definitions, which we
+compared with Hrube\v{s}'s~\cite{Hrubes2026}.
+\begin{itemize}
+\item \emph{Circuits.} \lean{NCSizeLE f s} holds if some list of at most $s$ elements of the free algebra
+$\F\langle V\rangle$, each a variable, a constant of $\F$, or the sum or product (in either order) of two earlier
+elements, contains $f$. A list of node values in topological order is the same as a circuit in the sense of
+Definition~\ref{def:circuit}, counting inputs as nodes; the only difference is that a gate may use the same earlier
+node twice, which changes sizes by at most a constant factor.
+\item \emph{Polynomials.} \lean{ID N}, \lean{S4 N} and \lean{perm4 N} are exactly the sums displayed in Section~2.
+\item \emph{Fields.} The theorems over general fields quantify over \lean{F : Type u} for an arbitrary universe
+\lean{u}.
+\item \emph{Bounds.} \lean{IDBound c} (resp.\ \lean{IDBoundF F c}) states: for every $\varepsilon>0$ there is
+$C>0$ with \lean{NCSizeLE (ID N)} $\lfloor CN^{c+\varepsilon}\rfloor$ for all $N\ge1$.
+\item \emph{Matrix multiplication.} The statement of Theorem~\ref{thm:main} mentions no matrix-multiplication
+notion; the input enters only inside the proof, as an integer decomposition checked against Zhou and Wang's
+\lean{matrixTensor}, which \lean{IDMM.rankAtMost\_of\_scheme} maps into any commutative ring. The notions of
+Section~2.4, used for Theorem~\ref{thm:oairoute}, are OpenAI's definitions, imported unchanged.
+\end{itemize}
+The statement file of the conditional milestone (\lean{IDMM/Statements.lean}), the circuit definitions and
+OpenAI's files are unchanged from the versions in which they were first written.
+
+\section{Discussion}
+\begin{enumerate}[label=(\arabic*)]
+\item \emph{Every odd characteristic.} Theorem~\ref{thm:main} is uniform across characteristics, with no exceptional
+odd primes: one integer decomposition serves every field. (It is an existence proof; neither we nor Zhou and Wang
+extract an executable algorithm.) The uncomputed set $S$ of Theorem~\ref{thm:oairoute}(b) remains only in that
+route. Lynn~\cite{Lynn2015} studied the analogous question for sum-of-squares formulas over
+algebraically closed fields.
+\item \emph{Better matrix multiplication feeds in directly.} The exponent is $C(\mu,w)$ with $w$ any rectangular
+exponent at aspect $\frac{1-\mu}{\mu}$, and the formal Lemma~\ref{lem:scheme} accepts any rank decomposition. An
+improvement of $\omega(1,k,1)$ near $k\approx0.61$, given by one explicit decomposition, would improve
+Theorem~\ref{thm:main} with no new circuit argument.
+\item \emph{Characteristic two} is excluded by Lemma~\ref{lem:hrubes}, which divides by $2$.
+\item \emph{The floor of the cost formula} is $2\Hb(\frac14)=1.6226$, approached only if $\omega=2$. It bounds this
+accounting, not circuits: the count is of all words in corner classes, so an identity with fewer nonzero weights, or
+evaluation shared across blocks, could go below it, as could a different route from sums of squares to circuits.
+\item \emph{Lower bounds.} Nothing here bears on lower bounds; the program of~\cite{HWY2011} needs only
+$\sigma(n)\ge n^{1+\varepsilon}$.
+\end{enumerate}
+
+\section*{Acknowledgments}
+This work rests on the work of many people, and it is a pleasure to thank them.
+
+Pavel Hrube\v{s}, Avi Wigderson and Amir Yehudayoff created the bridge between sums of squares and noncommutative
+circuits on which everything here stands, and Hrube\v{s}'s 2024 paper supplied both the first subquadratic bounds
+and the exact form of the reduction (his Lemma~22) that we use. Behind them stand Hurwitz and Radon, and Daniel
+Shapiro's monograph, which keeps the classical theory accessible. Noam Nisan introduced the noncommutative circuit
+model. The algebraic tools are Pascual Jordan and Eugene Wigner's 1928 transformation, Mykhailo Krawtchouk's
+polynomials, and the Baur--Strassen theorem.
+
+The main theorem rests on Przemys\l{}aw Uzna\'nski's rectangular bound~\cite{Uznanski2026}, which its author
+reports was produced with OpenAI's Codex, and on Yang Zhou and Mingsheng Wang's extension of it to every ring, with
+its Lean formalization, released openly~\cite{ZhouWang2026}. Their integer decompositions are what remove every
+restriction on the characteristic beyond Hrube\v{s}'s. Their development builds on OpenAI's library, on Jeroen
+Zuiddam's work on asymptotic spectra~\cite{Zuiddam2020} and his Lean development
+\texttt{omega-nine-quarters-all-fields}~\cite{Zuiddam2026}, and on harfe's formalization of Brouwer's fixed-point theorem~\cite{harfe2026}; the
+spectral method goes back to Strassen~\cite{Strassen1988}.
+
+The rectangular matrix-multiplication bounds of the second route, and the $9/4$ bound that started this line, are
+due to OpenAI~\cite{OAI2026b,OAI2026a}, who
+also formalized them in Lean and released the formalization openly~\cite{OAI2026lean}; we import 509 of their files
+unchanged, and without that library the second route would rest on an unverified input. Their work builds on a long line, including Volker Strassen~\cite{Strassen1969,Strassen1973}, Arnold
+Sch\"onhage~\cite{Schonhage1981}, Don Coppersmith and Shmuel Winograd~\cite{CoppersmithWinograd1990}, Grazia
+Lotti and Francesco Romani~\cite{LottiRomani1983}, Fran\c{c}ois Le~Gall and Florent
+Urrutia~\cite{LeGallUrrutia2018}, and Josh Alman, Ran Duan, Virginia Vassilevska Williams, Yinzhan Xu, Zixuan Xu
+and Renfei Zhou~\cite{ADVWXXZ2024}; Amir Shpilka's exposition~\cite{Shpilka2026} helped us read it. This project grew out of
+studying the October 2026 work of OpenAI and of Anthropic on the Exponential Time Hypothesis. Anthropic's
+paper~\cite{Anthropic3SAT} and its Lean-verified \texttt{formal-math} development~\cite{AnthropicFormalMath} led
+us to the improved composition bound mentioned in the introduction and from there to this problem; its single-bit
+analysis of the crossing tensor anticipates our first Pauli decomposition; and it set the standard of
+machine-checked proof that we have tried to meet.
+
+The formal proofs depend on Lean~4, created by Leonardo de~Moura and Sebastian Ullrich and developed by the Lean
+FRO and its contributors, and on Mathlib, whose community built, among much else, the model theory of algebraically
+closed fields and the Lefschetz principle used in Section~\ref{sec:charp}. We thank A.~Kapila and Vaibhav Tulsyan, whose independent same-day notes~\cite{Kapila2026,Tulsyan2026} on
+sums of squares we became aware of during this work.
+
+\paragraph{Use of AI systems.} The research and the formalization were carried out by the author working with AI
+systems: OpenAI's Codex (in ChatGPT) for research cycles, including the construction of
+Sections~\ref{sec:corner}--\ref{sec:assembly}, and for a review of the formalization that contributed
+Theorem~\ref{thm:fieldtransfer} and its Lean proof; and Anthropic's Claude for review, the Lean formalization and
+the drafting of this paper. All theorems and lemmas are machine-checked as described in Section~\ref{sec:lean}; the
+author is responsible for the contents.
+
+\begin{thebibliography}{99}
+\bibitem{ADVWXXZ2024} J.~Alman, R.~Duan, V.~Vassilevska Williams, Y.~Xu, Z.~Xu and R.~Zhou, \emph{More asymmetry
+yields faster matrix multiplication}, arXiv:2404.16349, 2024.
+\bibitem{ACDM2019} V.~Arvind, A.~Chatterjee, R.~Datta and P.~Mukhopadhyay, \emph{On explicit branching programs
+for the rectangular determinant and permanent polynomials}, ISAAC 2019; Chicago J. Theoret. Comput. Sci. 2020.
+\bibitem{Anthropic3SAT} Anthropic, \emph{A $2^{o(n)}$ time algorithm for 3-SAT}, October~26, 2026,
+\texttt{github.com/anthropics/formal-math}, \texttt{eth/paper.pdf}.
+\bibitem{AnthropicFormalMath} Anthropic, \texttt{formal-math} repository, \texttt{eth} development (Lean~4),
+commit \texttt{16a5ce4}, 2026.
+\bibitem{BaurStrassen1983} W.~Baur and V.~Strassen, \emph{The complexity of partial derivatives}, Theoret.
+Comput. Sci. 22 (1983), 317--330.
+\bibitem{BCS1997} P.~B\"urgisser, M.~Clausen and M.~A.~Shokrollahi, \emph{Algebraic Complexity Theory}, Springer,
+1997.
+\bibitem{CoppersmithWinograd1990} D.~Coppersmith and S.~Winograd, \emph{Matrix multiplication via arithmetic
+progressions}, J. Symbolic Comput. 9 (1990), 251--280.
+\bibitem{harfe2026} harfe, \texttt{fixed-point-theorems-lean4} (Lean~4 formalization of Brouwer's fixed-point
+theorem), GitHub, 2026.
+\bibitem{Hrubes2024} P.~Hrube\v{s}, \emph{A subquadratic upper bound on sum-of-squares composition formulas},
+ECCC TR24-026, 2024; CCC 2024, LIPIcs 300, 12:1--12:11.
+\bibitem{Hrubes2026} P.~Hrube\v{s}, \emph{A subquadratic upper bound on Hurwitz's problem and related
+non-commutative polynomials}, ECCC TR24-099, 2024; SIAM J. Comput. 55(2) (2026), 451--467.
+\bibitem{HWY2011} P.~Hrube\v{s}, A.~Wigderson and A.~Yehudayoff, \emph{Non-commutative circuits and the
+sum-of-squares problem}, J. Amer. Math. Soc. 24 (2011), 871--898.
+\bibitem{Hurwitz1898} A.~Hurwitz, \emph{\"Uber die Komposition der quadratischen Formen von beliebig vielen
+Variabeln}, Nachr. Ges. Wiss. G\"ottingen (1898), 309--316.
+\bibitem{JordanWigner1928} P.~Jordan and E.~Wigner, \emph{\"Uber das Paulische \"Aquivalenzverbot}, Z. Physik 47
+(1928), 631--651.
+\bibitem{Kapila2026} A.~Kapila, \emph{An $N^{\sqrt2+o(1)}$ upper bound for bilinear sum-of-squares composition
+formulas}, \texttt{github.com/a-kapila/maths-proofs}, October~27, 2026.
+\bibitem{Krawtchouk1929} M.~Krawtchouk, \emph{Sur une g\'en\'eralisation des polyn\^omes d'Hermite}, C. R. Acad.
+Sci. Paris 189 (1929), 620--622.
+\bibitem{Lean4} L.~de~Moura and S.~Ullrich, \emph{The Lean~4 theorem prover and programming language}, CADE-28,
+2021.
+\bibitem{LeGallUrrutia2018} F.~Le~Gall and F.~Urrutia, \emph{Improved rectangular matrix multiplication using
+powers of the Coppersmith--Winograd tensor}, SODA 2018.
+\bibitem{LottiRomani1983} G.~Lotti and F.~Romani, \emph{On the asymptotic complexity of rectangular matrix
+multiplication}, Theoret. Comput. Sci. 23 (1983), 171--185.
+\bibitem{Lynn2015} B.~Lynn, \emph{Sums-of-squares formulas over algebraically closed fields},
+arXiv:1510.05369, 2015.
+\bibitem{MacWilliamsSloane1977} F.~J.~MacWilliams and N.~J.~A.~Sloane, \emph{The Theory of Error-Correcting
+Codes}, North-Holland, 1977.
+\bibitem{Mathlib2020} The mathlib Community, \emph{The Lean mathematical library}, CPP 2020.
+\bibitem{Nisan1991} N.~Nisan, \emph{Lower bounds for non-commutative computation}, STOC 1991, 410--418.
+\bibitem{OAI2026a} OpenAI, \emph{An upper bound of $9/4$ for the matrix multiplication exponent}, preprint,
+October~2, 2026, \texttt{github.com/openai/math}.
+\bibitem{OAI2026b} OpenAI, \emph{Complex matrix multiplication below $2.258$ and rectangular bounds}, preprint,
+September~24, 2026, \texttt{github.com/openai/math}.
+\bibitem{OAI2026lean} OpenAI, Lean formalization of the matrix-multiplication bounds,
+\texttt{github.com/openai/math}, \texttt{lean/OAI/LinearAlgebra/MatrixMultiplication}, commit \texttt{7ef5c0c},
+2026.
+\bibitem{Radon1922} J.~Radon, \emph{Lineare Scharen orthogonaler Matrizen}, Abh. Math. Sem. Univ. Hamburg 1
+(1922), 1--14.
+\bibitem{Schonhage1981} A.~Sch\"onhage, \emph{Partial and total matrix multiplication}, SIAM J. Comput. 10 (1981),
+434--455.
+\bibitem{Shapiro2000} D.~B.~Shapiro, \emph{Compositions of Quadratic Forms}, de Gruyter, 2000.
+\bibitem{Shpilka2026} A.~Shpilka, \emph{Exposition of OpenAI's matrix multiplication in exponent $9/4$ (and an
+explicit algorithm)}, ECCC TR26-281, 2026.
+\bibitem{Strassen1969} V.~Strassen, \emph{Gaussian elimination is not optimal}, Numer. Math. 13 (1969), 354--356.
+\bibitem{Strassen1988} V.~Strassen, \emph{The asymptotic spectrum of tensors}, J. Reine Angew. Math. 384
+(1988), 102--152.
+\bibitem{Strassen1973} V.~Strassen, \emph{Vermeidung von Divisionen}, J. Reine Angew. Math. 264 (1973), 184--202.
+\bibitem{Uznanski2026} P.~Uzna\'nski, \emph{Rectangular matrix multiplication from polynomial products},
+arXiv:2610.10494v2, October~11, 2026 (v1, October~7, 2026, titled \emph{Rectangular matrix multiplication from
+shared-leg entropy}).
+\bibitem{ZhouWang2026} Y.~Zhou and M.~Wang, \emph{Shared-leg rectangular matrix multiplication over arbitrary
+rings}, research note and Lean~4 formalization, \texttt{github.com/Hugin-Hilbert/rectangular-matmul-rings},
+October~14, 2026, commit \texttt{285f513}.
+\bibitem{Zuiddam2020} J.~Zuiddam, \emph{Algebraic complexity, asymptotic spectra and entanglement polytopes},
+PhD dissertation, University of Amsterdam, 2018; updated version, 2020.
+\bibitem{Zuiddam2026} J.~Zuiddam, \texttt{omega-nine-quarters-all-fields} (Lean~4 development), GitHub, 2026.
+\bibitem{Tulsyan2026} V.~Tulsyan, \texttt{eth-hamiltonicity} repository, \texttt{research/pieces.md}, October 27,
+2026.
+\end{thebibliography}
+
+\end{document}

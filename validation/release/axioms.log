@@ -1,0 +1,29 @@
+warning: fixed-point-theorems: repository '<repo>/.lake/packages/fixed-point-theorems' has local changes
+'IDMM.main_target' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IDMM.main_target_almost_every_char' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IDMM.main_target_char_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IDMM.construction_almost_every_char' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IDMM.construction_char_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IDMM.IDBoundF.of_forall_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IDMM.thin_main' depends on axioms: [propext, Classical.choice, Quot.sound]
+IDMM.main_target : IDMM.MainTarget
+IDMM.main_target_almost_every_char.{u} :
+  ∃ S,
+    ∀ (F : Type u) [inst : Field F],
+      ringChar F ≠ 2 →
+        ringChar F = 0 ∨ ringChar F ∉ S →
+          IDMM.IDBoundF F IDMM.targetExponent ∧
+            IDMM.S4BoundF F IDMM.targetExponent ∧ IDMM.Perm4BoundF F IDMM.targetExponent
+IDMM.main_target_char_zero.{u} (F : Type u) [Field F] [CharZero F] :
+  IDMM.IDBoundF F IDMM.targetExponent ∧ IDMM.S4BoundF F IDMM.targetExponent ∧ IDMM.Perm4BoundF F IDMM.targetExponent
+IDMM.construction_almost_every_char.{u} {μ w c : ℝ} (hμ0 : 1 / 2 < μ) (hμ1 : μ < 1)
+  (hw : OAI.MatrixMultiplication.Arithmetic.RectangularAdmissibleExponent ℂ ((1 - μ) / μ) w) (hc : 1 ≤ c)
+  (hgap : IDMM.constructionExponent μ w < c) :
+  ∃ S,
+    ∀ (F : Type u) [inst : Field F],
+      ringChar F ≠ 2 → ringChar F = 0 ∨ ringChar F ∉ S → IDMM.IDBoundF F c ∧ IDMM.S4BoundF F c ∧ IDMM.Perm4BoundF F c
+IDMM.construction_char_zero.{u} (F : Type u) [Field F] [CharZero F] {μ w : ℝ} (hμ0 : 1 / 2 < μ) (hμ1 : μ < 1)
+  (hw : OAI.MatrixMultiplication.Arithmetic.RectangularAdmissibleExponent ℂ ((1 - μ) / μ) w)
+  (hc : 1 ≤ IDMM.constructionExponent μ w) :
+  IDMM.IDBoundF F (IDMM.constructionExponent μ w) ∧
+    IDMM.S4BoundF F (IDMM.constructionExponent μ w) ∧ IDMM.Perm4BoundF F (IDMM.constructionExponent μ w)

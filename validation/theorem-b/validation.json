@@ -1,0 +1,230 @@
+{
+  "started_eastern": "2026-10-29T16:13:16-04:00",
+  "source_sha256": {
+    "TheoremB/CharP.lean": "818604d25dcdb6c6ce923aaa556566226b1d4c281ae5f8b3122cae98113fb2d8",
+    "TheoremB/CharPGrowth.lean": "8b5ee135cc6c430890a8add0dba9a6dbfbfe396a0b5332a338696455edb7d225",
+    "TheoremB/Corollaries.lean": "dee8d1a99538a999276a5523aaeebd236c3994b805c501caa79c4e58ff773adf",
+    "TheoremB/Defs.lean": "3c30be977dbcacca7acbbc7db0f9b91e9097712d3c96cdaf5c0ca32688dde82e",
+    "TheoremB/PTRank.lean": "5df6c387c2d1174ad5888e3b1d82e444aa65575856f19329f7ea050ac3decd09",
+    "TheoremB/Rectangular.lean": "26ab0617efdf5f15a1f26043136e171b629e8fb372807cf8baac41178aa0405d",
+    "TheoremB/Sanity.lean": "cd1acda5035cd058a4482dfdc332d379745b05ca15bb2f1f6c5e5c879c3c3475",
+    "lake-manifest.json": "3fd74263f0c36918dc4a43bfa9b299da0a98a8fa07cd2522b327bc94c038116d",
+    "lakefile.toml": "3fdc0eb0e4fab2a5f1544934268c3c3d24bc4d6d951b5f7ab95bcc9074296b1e",
+    "lean-toolchain": "3aac669c7a910ec2389f4e4f921b605adf6ebf2d1e0c9b9cd0be4d33f3f5db71",
+    "scripts/CheckAxioms.lean": "0b65b465201055f128d60a870d27858dd102bde5bbb0142f86991bd90fd8737e",
+    "scripts/PrintAxioms.lean": "524638d762f06a36dbcf48096b3faf7cd3b44d97f79ff06a3d3622a241d8cde1"
+  },
+  "stages": {
+    "build": {
+      "command": [
+        "lake",
+        "build"
+      ],
+      "exit_code": 0,
+      "started_eastern": "2026-10-29T16:13:16-04:00",
+      "completed_eastern": "2026-10-29T16:13:23-04:00",
+      "log_sha256": "02167b2571b2030beae8eb6dce7a801259e104cdd9f1476bd100d64618f5ca1a"
+    },
+    "check_axioms": {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "scripts/CheckAxioms.lean"
+      ],
+      "exit_code": 0,
+      "started_eastern": "2026-10-29T16:13:23-04:00",
+      "completed_eastern": "2026-10-29T16:13:39-04:00",
+      "log_sha256": "2083fa435e410f20d3cc0655c1efb86e623300042381033dbc1b532a9cea720c"
+    },
+    "print_axioms": {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "scripts/PrintAxioms.lean"
+      ],
+      "exit_code": 0,
+      "started_eastern": "2026-10-29T16:13:39-04:00",
+      "completed_eastern": "2026-10-29T16:13:43-04:00",
+      "log_sha256": "6b2acf27dabe0418d6877a2407da5f418ad48a6579d8a077b50c35b10717db45"
+    },
+    "kernel_TheoremB.Defs": {
+      "command": [
+        "lake",
+        "env",
+        "leanchecker",
+        "TheoremB.Defs"
+      ],
+      "exit_code": 0,
+      "started_eastern": "2026-10-29T16:13:43-04:00",
+      "completed_eastern": "2026-10-29T16:13:48-04:00",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "kernel_TheoremB.Corollaries": {
+      "command": [
+        "lake",
+        "env",
+        "leanchecker",
+        "TheoremB.Corollaries"
+      ],
+      "exit_code": 0,
+      "started_eastern": "2026-10-29T16:13:48-04:00",
+      "completed_eastern": "2026-10-29T16:13:56-04:00",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "kernel_TheoremB.PTRank": {
+      "command": [
+        "lake",
+        "env",
+        "leanchecker",
+        "TheoremB.PTRank"
+      ],
+      "exit_code": 0,
+      "started_eastern": "2026-10-29T16:13:56-04:00",
+      "completed_eastern": "2026-10-29T16:14:04-04:00",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "kernel_TheoremB.CharP": {
+      "command": [
+        "lake",
+        "env",
+        "leanchecker",
+        "TheoremB.CharP"
+      ],
+      "exit_code": 0,
+      "started_eastern": "2026-10-29T16:14:04-04:00",
+      "completed_eastern": "2026-10-29T16:14:11-04:00",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "kernel_TheoremB.CharPGrowth": {
+      "command": [
+        "lake",
+        "env",
+        "leanchecker",
+        "TheoremB.CharPGrowth"
+      ],
+      "exit_code": 0,
+      "started_eastern": "2026-10-29T16:14:11-04:00",
+      "completed_eastern": "2026-10-29T16:14:17-04:00",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "kernel_TheoremB.Rectangular": {
+      "command": [
+        "lake",
+        "env",
+        "leanchecker",
+        "TheoremB.Rectangular"
+      ],
+      "exit_code": 0,
+      "started_eastern": "2026-10-29T16:14:17-04:00",
+      "completed_eastern": "2026-10-29T16:14:24-04:00",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "kernel_TheoremB.Sanity": {
+      "command": [
+        "lake",
+        "env",
+        "leanchecker",
+        "TheoremB.Sanity"
+      ],
+      "exit_code": 0,
+      "started_eastern": "2026-10-29T16:14:24-04:00",
+      "completed_eastern": "2026-10-29T16:14:30-04:00",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "kernel_fresh_TheoremB.Defs": {
+      "command": [
+        "lake",
+        "env",
+        "leanchecker",
+        "--fresh",
+        "TheoremB.Defs"
+      ],
+      "exit_code": 0,
+      "started_eastern": "2026-10-29T16:14:30-04:00",
+      "completed_eastern": "2026-10-29T16:15:42-04:00",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "kernel_fresh_TheoremB.Corollaries": {
+      "command": [
+        "lake",
+        "env",
+        "leanchecker",
+        "--fresh",
+        "TheoremB.Corollaries"
+      ],
+      "exit_code": 0,
+      "started_eastern": "2026-10-29T16:15:42-04:00",
+      "completed_eastern": "2026-10-29T16:22:35-04:00",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "kernel_fresh_TheoremB.PTRank": {
+      "command": [
+        "lake",
+        "env",
+        "leanchecker",
+        "--fresh",
+        "TheoremB.PTRank"
+      ],
+      "exit_code": 0,
+      "started_eastern": "2026-10-29T16:22:35-04:00",
+      "completed_eastern": "2026-10-29T16:29:20-04:00",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "kernel_fresh_TheoremB.CharP": {
+      "command": [
+        "lake",
+        "env",
+        "leanchecker",
+        "--fresh",
+        "TheoremB.CharP"
+      ],
+      "exit_code": 0,
+      "started_eastern": "2026-10-29T16:29:20-04:00",
+      "completed_eastern": "2026-10-29T16:35:32-04:00",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "kernel_fresh_TheoremB.CharPGrowth": {
+      "command": [
+        "lake",
+        "env",
+        "leanchecker",
+        "--fresh",
+        "TheoremB.CharPGrowth"
+      ],
+      "exit_code": 0,
+      "started_eastern": "2026-10-29T16:35:32-04:00",
+      "completed_eastern": "2026-10-29T16:41:34-04:00",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "kernel_fresh_TheoremB.Rectangular": {
+      "command": [
+        "lake",
+        "env",
+        "leanchecker",
+        "--fresh",
+        "TheoremB.Rectangular"
+      ],
+      "exit_code": 0,
+      "started_eastern": "2026-10-29T16:41:34-04:00",
+      "completed_eastern": "2026-10-29T16:48:07-04:00",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "kernel_fresh_TheoremB.Sanity": {
+      "command": [
+        "lake",
+        "env",
+        "leanchecker",
+        "--fresh",
+        "TheoremB.Sanity"
+      ],
+      "exit_code": 0,
+      "started_eastern": "2026-10-29T16:48:07-04:00",
+      "completed_eastern": "2026-10-29T16:52:18-04:00",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "status": "passed",
+  "completed_eastern": "2026-10-29T16:52:18-04:00"
+}
