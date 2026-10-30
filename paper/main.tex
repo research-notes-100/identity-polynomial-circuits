@@ -630,9 +630,10 @@ adapted to our Lean and Mathlib versions;
 \item the \lean{PauliCubes} library (about 4{,}700 lines; first written for Lean~4.33.1 and ported with the
 edits recorded in the repository), which proves Theorem~\ref{thm:cubes}, Hrube\v{s}'s
 Lemma~22 in the form of Lemma~\ref{lem:hrubes}, and the reductions for $S_{4,N}$ and $\mathrm{perm}_{4,N}$;
-\item the \lean{IDMM} library (48 files, about 7{,}600 lines) for this paper.
+\item the \lean{IDMM} library (51 files, about 8{,}000 lines) for this paper.
 \end{itemize}
 The top-level statements are:
+{\sloppy
 \begin{itemize}
 \item \lean{IDMM.id\_bound\_every\_char} (Theorem~\ref{thm:main}): for every field \lean{F : Type u} with
 $\mathtt{ringChar}\,F\ne2$, \lean{IDBoundF}, \lean{S4BoundF} and \lean{Perm4BoundF} hold over \lean{F} at
@@ -643,20 +644,33 @@ $211321/125000$ over $\C$;
 every field \lean{F : Type u} with $\mathtt{ringChar}\,F\ne2$ and $\mathtt{ringChar}\,F=0\lor\mathtt{ringChar}\,F\notin S$, the same three bounds hold
 over \lean{F};
 \item \lean{IDMM.main\_target\_char\_zero}: the same bounds over every field of characteristic zero;
+\item \lean{PauliCubes.id\_circuit}, \lean{PauliCubes.s4\_circuit} and \lean{PauliCubes.perm4\_circuit}
+(Theorem~\ref{thm:cubes}): over every field with $2\ne0$ and for every $\varepsilon>0$, circuits of size
+$O(N^{1.727899+\varepsilon})$; \lean{IDMM.cubes\_bound} restates them as \lean{IDBoundF}, \lean{S4BoundF} and
+\lean{Perm4BoundF};
 \item \lean{IDMM.construction\_almost\_every\_char} and \lean{IDMM.construction\_char\_zero}:
 Theorem~\ref{thm:fieldtransfer}(a) and~(b);
 \item \lean{IDMM.thin\_main}: the bound $16939/10000$ over $\C$ from the thin endpoint alone;
 \item \lean{IDMM.construction\_target : ConditionalTarget} (Theorem~\ref{thm:construction} over $\C$, for every
 $\mu\in(\frac12,1)$ and every admissible $w$) and \lean{IDMM.construction\_gen} (any field with $2\ne0$ and
-$\sqrt{-1}$, given block oracles).
+$\sqrt{-1}$, given block oracles);
+\item \lean{IDMM.strict\_id\_bound\_every\_char}, \lean{IDMM.strict\_main\_target},
+\lean{IDMM.strict\_main\_target\_char\_zero}, \lean{IDMM.strict\_cubes\_bound} and
+\lean{IDMM.strict\_main\_target\_almost\_every\_char}: Theorems~\ref{thm:main}, \ref{thm:oairoute} and~\ref{thm:cubes} in the strict
+circuit model described in Section~\ref{sec:trusted};
+\item \lean{IDMM.two\_mul\_le\_of\_ncSizeLE\_ID}, \lean{IDMM.not\_idBoundF\_of\_lt\_one},
+\lean{IDMM.id\_bound\_every\_char\_rat} and \lean{IDMM.id\_bound\_every\_char\_zmod3}: the non-vacuity checks
+described there.
 \end{itemize}
+\par}
 Every one of them depends only on Lean's axioms \lean{propext}, \lean{Classical.choice} and \lean{Quot.sound}; no
 \lean{sorry}, \lean{native\_decide} or added axiom occurs anywhere.
 
 The repository \url{https://github.com/research-notes-100/identity-polynomial-circuits} contains exactly the
-sources verified. On October~29, 2026, from 4:09 to 4:50~p.m.\ Eastern, \texttt{scripts/validate.py} ran on them,
+sources verified. On October~29, 2026, from 10:16 to 10:48~p.m.\ Eastern, \texttt{scripts/validate.py} ran on them,
 in order: the full \lean{lake build}; the audit modules \lean{IDMM.FinalAudit} and
-\lean{IDMM.FinalAuditEveryChar}, which print the signatures and axiom lists of the theorems above; and
+\lean{IDMM.FinalAuditEveryChar}, which print the signature and axiom list of every theorem above
+(\texttt{scripts/audit.py} fails if one is missing); and
 \lean{leanchecker --fresh} on both modules, which replays each module and everything it imports through the
 kernel in a fresh environment. Every stage exited with status~0. The record in \texttt{validation/release} gives
 the SHA-256 hash of every Lean source, pin file and log, and \texttt{scripts/audit.py} checks the repository
@@ -672,7 +686,7 @@ theorems; the proofs of Theorem~\ref{thm:oairoute} use OpenAI's library and not 
 built and checked on its own. The import closure of \lean{IDMM.id\_bound\_every\_char} contains 52 modules of Zhou
 and Wang's library, 55 of OpenAI's, 5 of harfe's, 22 of \lean{PauliCubes} and 34 of \lean{IDMM}, besides Mathlib.
 
-\subsection{The trusted definitions}
+\subsection{The trusted definitions}\label{sec:trusted}
 A formal theorem is only as good as its statement. The statements rest on the following definitions, which we
 compared with Hrube\v{s}'s~\cite{Hrubes2026}.
 \begin{itemize}
@@ -680,7 +694,16 @@ compared with Hrube\v{s}'s~\cite{Hrubes2026}.
 $\F\langle V\rangle$, each a variable, a constant of $\F$, or the sum or product (in either order) of two earlier
 elements, contains $f$. A list of node values in topological order is the same as a circuit in the sense of
 Definition~\ref{def:circuit}, counting inputs as nodes; the only difference is that a gate may use the same earlier
-node twice, which changes sizes by at most a constant factor.
+node twice. Read strictly, Definition~\ref{def:circuit} requires the two inputs of a gate to be different nodes.
+\lean{StrictNCSizeLE} formalizes that reading by node positions, and \lean{IDMM.ncSizeLE\_strict} turns a circuit
+with $s$ nodes into a strict one with at most $2s+1$ nodes: one constant node $1$, and after every node $g$ a copy
+$1\cdot g$. Conversely every strict circuit is a circuit (\lean{IDMM.StrictNCSizeLE.ncSizeLE}).
+Theorems~\ref{thm:main}, \ref{thm:oairoute} and~\ref{thm:cubes} are proved in the strict model as well.
+\item \emph{Non-vacuity.} Every circuit computing $\ID_N$ has at least $2N$ nodes, one for each variable
+(\lean{IDMM.two\_mul\_le\_of\_ncSizeLE\_ID}). Hence \lean{IDBoundF F c} is false for every $c<1$, in both models
+(\lean{IDMM.not\_idBoundF\_of\_lt\_one}, \lean{IDMM.not\_strictIDBoundF\_of\_lt\_one}): no bound statement holds
+with an exponent below $1$. These lower bounds do not show that our exponents are optimal. Theorem~\ref{thm:main} is also instantiated over $\mathbb{Q}$ and over $\mathbb{F}_3$, so
+its hypothesis is satisfiable.
 \item \emph{Polynomials.} \lean{ID N}, \lean{S4 N} and \lean{perm4 N} are exactly the sums displayed in Section~2.
 \item \emph{Fields.} The theorems over general fields quantify over \lean{F : Type u} for an arbitrary universe
 \lean{u}.

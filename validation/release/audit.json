@@ -2,17 +2,41 @@
   "status": "passed",
   "unconditional_main_target_proved": true,
   "audited_declarations": [
+    "IDMM.IDBoundF.of_ext",
     "IDMM.IDBoundF.of_forall_add",
+    "IDMM.StrictNCSizeLE.ncSizeLE",
     "IDMM.construction_almost_every_char",
     "IDMM.construction_char_zero",
+    "IDMM.construction_gen",
+    "IDMM.construction_target",
+    "IDMM.cubes_bound",
+    "IDMM.exists_ext_of_algClosure",
     "IDMM.id_bound_every_char",
+    "IDMM.id_bound_every_char_rat",
+    "IDMM.id_bound_every_char_zmod3",
     "IDMM.main_target",
     "IDMM.main_target_almost_every_char",
     "IDMM.main_target_char_zero",
+    "IDMM.ncSizeLE_strict",
+    "IDMM.not_idBoundF_of_lt_one",
+    "IDMM.not_strictIDBoundF_of_lt_one",
+    "IDMM.not_strictNCSizeLE_zero",
+    "IDMM.oracles_of_scheme",
     "IDMM.rankAtMost_of_scheme",
+    "IDMM.strict_cubes_bound",
+    "IDMM.strict_id_bound_every_char",
+    "IDMM.strict_id_trivial",
+    "IDMM.strict_main_target",
+    "IDMM.strict_main_target_almost_every_char",
+    "IDMM.strict_main_target_char_zero",
+    "IDMM.strict_of_bound",
     "IDMM.thin_main",
+    "IDMM.two_mul_le_of_ncSizeLE_ID",
     "IDMM.uz_exponent_slack",
-    "Matmul.RectangularRankBridge.exists_scheme_certificate"
+    "Matmul.RectangularRankBridge.exists_scheme_certificate",
+    "PauliCubes.id_circuit",
+    "PauliCubes.perm4_circuit",
+    "PauliCubes.s4_circuit"
   ],
   "allowed_axioms": [
     "Classical.choice",
@@ -24,6 +48,6 @@
   "modified_Matmul_files": [
     "Matmul/UniversalRecursiveProgram.lean"
   ],
-  "completed_eastern": "2026-10-29T16:50:09.622098-04:00",
+  "completed_eastern": "2026-10-29T22:48:45.944723-04:00",
   "scope": "Current source/pin hashes, complete build, axiom audit, fresh kernel replay."
 }

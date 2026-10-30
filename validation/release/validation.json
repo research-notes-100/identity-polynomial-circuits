@@ -1,5 +1,5 @@
 {
-  "started_eastern": "2026-10-29T16:09:42.509137-04:00",
+  "started_eastern": "2026-10-29T22:16:19.095146-04:00",
   "source_sha256": {
     "IDMM/Audit.lean": "3a3d6b53b838ec2e151cd03de1f626333aa1fe6af00462352be04230a3da4d66",
     "IDMM/BilinearExtraction.lean": "b96f55f4b89d8083b9153077de3bf6852ebeef2226773092d1c427961fa9fae7",
@@ -8,6 +8,7 @@
     "IDMM/BridgeCost.lean": "3eb30a0ba6e59d244c239eeaaf1f5211443b77463a04abb280c453231504b2f2",
     "IDMM/CharP.lean": "7f1d4237534e346804d58ebb0a37822392ce080628beb7d4499d3353d9af8d78",
     "IDMM/CharPTools.lean": "7b86c144e61862ae6734e53fe97bd6789900c48c911dde6b08df9cbce28f45a9",
+    "IDMM/CircuitModel.lean": "5891f3aa187e8687a19ccf170b7a8b4e7168b839712ee411993ab63a133f1ca3",
     "IDMM/Construction.lean": "4c6c7f9db1a4427e34c02c70ce8cdd33173680761348abd903afe49e825a49df",
     "IDMM/Corner.lean": "2fd7597e8270c062082408cc80da1d9120a35dd974cd4faebff01a34959236d6",
     "IDMM/Eventual.lean": "211c1d25607d959bcd575dd037fcd40818f595c88ba0d8182555c774bfa47380",
@@ -15,8 +16,8 @@
     "IDMM/ExtDescent.lean": "4e76a2f898fa8ecae55242310ca862a4bfa98a8c30c71fbca096a0e246a97521",
     "IDMM/FieldTransfer.lean": "c44d9a7bc83f53b0dab296bc077e42eefe05e0a6069f501ad1bb2d6cdb3ae99a",
     "IDMM/Final.lean": "83cd2ab583f2e57b9d42d999d1baedb8a18cad0331b7e22690b8ddb061845771",
-    "IDMM/FinalAudit.lean": "75de7a6238d7069980b65b80a7a81f8b3e58fe94d1dd7eed67d147d5704466f8",
-    "IDMM/FinalAuditEveryChar.lean": "f400e1cb2842ed82c1fe946e67871afb824ebb1fe218d7e0832882b949311f25",
+    "IDMM/FinalAudit.lean": "7836bbba0603c868768389818d06e1080d7384649b37fdf5fcbb0f9241893d36",
+    "IDMM/FinalAuditEveryChar.lean": "bd9b1cec81290309e87b5359dc1b0fe484c97c6d85ab810d248ff08d1e3410fb",
     "IDMM/FinalNumerics.lean": "a1253b43a46f69d1a8e55659755db2c1ab0c9dba27ee7747d0bbc94218636738",
     "IDMM/Interp.lean": "9df587cc641d6abd1a49293513e3af21b25ddb4e3120e274517b0e9a1f20837f",
     "IDMM/Layout.lean": "ba0a54185982c70ad470b5945a452e6a02376c3a07a6097d9e36b4ebdba0d92d",
@@ -46,6 +47,8 @@
     "IDMM/SchemeOracle.lean": "a1328ee29c6e19752bb14b1cc5d641f1ec7fb6071478e1a8ed86a4c6228a3173",
     "IDMM/SourceAccounting.lean": "00358a574892dc847cc952e814a991664d7db86b188b4dcb5a019fede1aed0f6",
     "IDMM/Statements.lean": "32bea0a0b1dcfbe6176bdf3ef687b6c1b824a2142904d710a7b7db5b91580027",
+    "IDMM/StrictEveryChar.lean": "ebc06ce6268496a88ac9b987c3ffe6fc7f9ae1cef2c289ef8dfa4c21e3067521",
+    "IDMM/StrictMain.lean": "2c5939889eda9e5cfbabd51303e49696849b48c6232544ab8f947bdd8db85838",
     "IDMM/Symbolic.lean": "eaa3ac5f6e9c731f161615e243d158a3925418e2ef41ee405a050ec7d5427788",
     "IDMM/ThinBound.lean": "672e437c652d9a073776ae59db27735fcd3dad86f1805e6bf688c991fc1e1b04",
     "IDMM/Transfers.lean": "5a5b18027a3601d2dbddb62ba5b9a86be74f442260003d94e620f681b8c6a842",
@@ -652,16 +655,16 @@
   },
   "status": "passed",
   "current_stage": "complete",
-  "stage_started_eastern": "2026-10-29T16:31:17.056899-04:00",
+  "stage_started_eastern": "2026-10-29T22:33:20.551685-04:00",
   "build": {
     "command": [
       "lake",
       "build"
     ],
     "exit_code": 0,
-    "started_eastern": "2026-10-29T16:09:42.575427-04:00",
-    "completed_eastern": "2026-10-29T16:09:45.907466-04:00",
-    "log_sha256": "c9781114595643048b904ad9c8e8b38e2846cedb08f9a5d6bd5ea2cab8d28335"
+    "started_eastern": "2026-10-29T22:16:19.155070-04:00",
+    "completed_eastern": "2026-10-29T22:16:37.170400-04:00",
+    "log_sha256": "adc04a70d6609ca127c29321a0586e63ec5133f87c2ef9ce74647e4bb9e11e3c"
   },
   "axioms": {
     "command": [
@@ -671,9 +674,9 @@
       "IDMM/FinalAudit.lean"
     ],
     "exit_code": 0,
-    "started_eastern": "2026-10-29T16:09:45.908013-04:00",
-    "completed_eastern": "2026-10-29T16:10:06.460330-04:00",
-    "log_sha256": "c4c03d1c134cda5f475ad5999dd9230e6e719174e03b603316f37af21970976f"
+    "started_eastern": "2026-10-29T22:16:37.171570-04:00",
+    "completed_eastern": "2026-10-29T22:16:41.187454-04:00",
+    "log_sha256": "6d0c3f809f7e249b03a16c14bdedb5edf2548e0ebe6dc91232db4737bbdde2cf"
   },
   "axioms_every_char": {
     "command": [
@@ -683,9 +686,9 @@
       "IDMM/FinalAuditEveryChar.lean"
     ],
     "exit_code": 0,
-    "started_eastern": "2026-10-29T16:10:06.460823-04:00",
-    "completed_eastern": "2026-10-29T16:10:11.478429-04:00",
-    "log_sha256": "cdcc8ab3128d3c0a966c05f973b723c4eeb8d7c0604ce338f433235da8b9904a"
+    "started_eastern": "2026-10-29T22:16:41.187934-04:00",
+    "completed_eastern": "2026-10-29T22:16:45.091462-04:00",
+    "log_sha256": "174d4b781aaa80fa3ce718c9a9c1c733824ed232356cc72bd5544ecc710898a0"
   },
   "kernel": {
     "command": [
@@ -696,8 +699,8 @@
       "IDMM.FinalAudit"
     ],
     "exit_code": 0,
-    "started_eastern": "2026-10-29T16:10:11.479081-04:00",
-    "completed_eastern": "2026-10-29T16:31:17.055001-04:00",
+    "started_eastern": "2026-10-29T22:16:45.091868-04:00",
+    "completed_eastern": "2026-10-29T22:33:20.550736-04:00",
     "log_sha256": "61612c4b270b7e49acbeca65ccb5fe8dba2b0555af5617c1fdf08fc0262b2e3d"
   },
   "kernel_every_char": {
@@ -709,9 +712,9 @@
       "IDMM.FinalAuditEveryChar"
     ],
     "exit_code": 0,
-    "started_eastern": "2026-10-29T16:31:17.056899-04:00",
-    "completed_eastern": "2026-10-29T16:50:09.620929-04:00",
+    "started_eastern": "2026-10-29T22:33:20.551685-04:00",
+    "completed_eastern": "2026-10-29T22:48:45.943673-04:00",
     "log_sha256": "61612c4b270b7e49acbeca65ccb5fe8dba2b0555af5617c1fdf08fc0262b2e3d"
   },
-  "completed_eastern": "2026-10-29T16:50:09.622098-04:00"
+  "completed_eastern": "2026-10-29T22:48:45.944723-04:00"
 }

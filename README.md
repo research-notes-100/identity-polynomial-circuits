@@ -22,6 +22,20 @@ or lemma is proved here, using only Lean's axioms `propext`, `Classical.choice` 
 The circuit model (`PauliCubes/CircuitDefs.lean`) and the bound statements (`IDMM/Eventual.lean`) are the
 definitions to read; Section 8 of the paper compares them with Hrubeš's.
 
+## Checks on the circuit model
+
+`IDMM/CircuitModel.lean`, `IDMM/StrictMain.lean`, `IDMM/StrictEveryChar.lean`:
+
+| Check | Lean | Statement |
+| --- | --- | --- |
+| Hrubeš's model, read strictly | `IDMM.StrictNCSizeLE` | Every non-input node is the sum or product of two *different* earlier nodes. |
+| Conversion | `IDMM.ncSizeLE_strict` | A circuit with `s` nodes gives a strict one with at most `2s + 1` nodes. |
+| The strict model is stronger | `IDMM.StrictNCSizeLE.ncSizeLE` | Every strict circuit is a circuit. |
+| Theorems 1.1–1.3, strict | `IDMM.strict_id_bound_every_char`, `IDMM.strict_main_target`, `IDMM.strict_main_target_char_zero`, `IDMM.strict_main_target_almost_every_char`, `IDMM.strict_cubes_bound` | The same exponents in the strict model. |
+| Not vacuous: lower bound | `IDMM.two_mul_le_of_ncSizeLE_ID` | Every circuit computing `ID_N` has at least `2N` nodes. |
+| Not vacuous: bound predicate | `IDMM.not_idBoundF_of_lt_one`, `IDMM.not_strictIDBoundF_of_lt_one` | No exponent below 1 is achievable, in either model. |
+| Not vacuous: hypotheses | `IDMM.id_bound_every_char_rat`, `IDMM.id_bound_every_char_zmod3` | Theorem 1.1 over ℚ and over `ZMod 3`. |
+
 ## How the 1.6692 proof goes
 
 `IDMM/EveryChar.lean`:
@@ -73,7 +87,8 @@ this toolchain. `validate.py` runs the full build, prints the signatures and axi
 of both import closures (`IDMM/FinalAudit.lean`, `IDMM/FinalAuditEveryChar.lean`), and replays both modules
 and everything they import in a fresh kernel environment (`leanchecker --fresh`). It records commands, exit
 codes, timestamps and the SHA-256 of every Lean source, pin file and log. `audit.py` checks a record against
-the sources in the repository, checks that OpenAI's and Zhou and Wang's files match upstream
+the sources in the repository, checks that the logs give the signature and axiom list of every audited theorem,
+checks that OpenAI's and Zhou and Wang's files match upstream
 (`validation/provenance.json`), and scans `IDMM`, `PauliCubes` and `Matmul` for `sorry`, `native_decide` and
 added axioms.
 

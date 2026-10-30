@@ -18,3 +18,90 @@ fun F [Field F] c =>
 def IDMM.Perm4BoundF.{u} : (F : Type u) → [Field F] → ℝ → Prop :=
 fun F [Field F] c =>
   ∀ (ε : ℝ), 0 < ε → ∃ C, 0 < C ∧ ∀ (N : ℕ), 1 ≤ N → PauliCubes.NCSizeLE (PauliCubes.perm4 F N) ⌊C * ↑N ^ (c + ε)⌋₊
+'IDMM.strict_id_bound_every_char' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IDMM.id_bound_every_char_rat' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IDMM.id_bound_every_char_zmod3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IDMM.ncSizeLE_strict' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IDMM.StrictNCSizeLE.ncSizeLE' depends on axioms: [propext, Quot.sound]
+'IDMM.strict_of_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IDMM.two_mul_le_of_ncSizeLE_ID' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IDMM.not_idBoundF_of_lt_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IDMM.not_strictIDBoundF_of_lt_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IDMM.strict_id_trivial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IDMM.not_strictNCSizeLE_zero' depends on axioms: [propext, Quot.sound]
+IDMM.strict_id_bound_every_char : ∀ (F : Type u_1) [inst : Field F],
+  ringChar F ≠ 2 →
+    IDMM.StrictIDBoundF F (4173 / 2500) ∧ IDMM.StrictS4BoundF F (4173 / 2500) ∧ IDMM.StrictPerm4BoundF F (4173 / 2500)
+IDMM.id_bound_every_char_rat : IDMM.IDBoundF ℚ (4173 / 2500) ∧
+  IDMM.S4BoundF ℚ (4173 / 2500) ∧ IDMM.Perm4BoundF ℚ (4173 / 2500)
+IDMM.id_bound_every_char_zmod3 : IDMM.IDBoundF (ZMod 3) (4173 / 2500) ∧
+  IDMM.S4BoundF (ZMod 3) (4173 / 2500) ∧ IDMM.Perm4BoundF (ZMod 3) (4173 / 2500)
+@IDMM.two_mul_le_of_ncSizeLE_ID : ∀ {F : Type u_1} [inst : Field F] {N s : ℕ},
+  PauliCubes.NCSizeLE (PauliCubes.ID F N) s → 2 * N ≤ s
+@IDMM.not_idBoundF_of_lt_one : ∀ {F : Type u_1} [inst : Field F] {c : ℝ}, c < 1 → ¬IDMM.IDBoundF F c
+@IDMM.ncSizeLE_strict : ∀ {K : Type u_1} {V : Type u_2} [inst : CommRing K] {f : FreeAlgebra K V} {s : ℕ},
+  PauliCubes.NCSizeLE f s → IDMM.StrictNCSizeLE f (2 * s + 1)
+@IDMM.rankAtMost_of_scheme : ∀ {K : Type u_1} [inst : CommRing K] {a b ρ : ℕ}
+  (alg : Matmul.UniversalRecursiveAlgorithm.Scheme a b a ρ),
+  Matmul.IntegerBilinear.Algorithm.tensor alg = Matmul.IntegerBilinear.matrixTensor a b a →
+    (OAI.MatrixMultiplication.Foundation.Tensor.matrixCoefficients (Fin a) (Fin b) (Fin a)).RankAtMost ρ
+IDMM.uz_exponent_slack : IDMM.constructionExponent (18 / 29) (200 / 99) + 1 / 10 ^ 5 < 4173 / 2500
+@IDMM.construction_gen : ∀ {μ : ℝ} {K : Type u_1} [inst : Field K] [NeZero 2] [IDMM.SqrtNegOne K],
+  1 / 2 < μ →
+    μ < 1 →
+      ∀ {w : ℝ},
+        2 ≤ w →
+          (∀ (ε : ℝ),
+              0 < ε →
+                ∃ C,
+                  0 < C ∧
+                    ∀ (n : ℕ),
+                      ∃ M,
+                        IDMM.BlockMM (PauliCubes.ncInputs K ((Fin n → Fin 2) ⊕ (Fin n → Fin 2))) (IDMM.mOfMu μ n)
+                            (n - IDMM.mOfMu μ n) M ∧
+                          ↑M ≤ C * (2 ^ IDMM.mOfMu μ n) ^ (w + ε)) →
+            IDMM.IDBoundF K (IDMM.constructionExponent μ w)
+@IDMM.oracles_of_scheme : ∀ {K : Type u_1} [inst : Field K] {μ : ℝ},
+  1 / 2 < μ →
+    μ < 1 →
+      ∀ {a b R : ℕ},
+        (OAI.MatrixMultiplication.Foundation.Tensor.matrixCoefficients (Fin a) (Fin b) (Fin a)).RankAtMost R →
+          2 ≤ a →
+            ∀ {τ : ℝ},
+              ↑a ^ ((1 - μ) / μ) ≤ ↑b →
+                ↑R ≤ ↑a ^ τ →
+                  ↑(a * b) ≤ ↑a ^ τ →
+                    ↑a ^ 2 ≤ ↑a ^ τ →
+                      ∀ {ε : ℝ},
+                        0 < ε →
+                          ∃ C,
+                            0 < C ∧
+                              ∀ (n : ℕ),
+                                ∃ M,
+                                  IDMM.BlockMM (PauliCubes.ncInputs K ((Fin n → Fin 2) ⊕ (Fin n → Fin 2)))
+                                      (IDMM.mOfMu μ n) (n - IDMM.mOfMu μ n) M ∧
+                                    ↑M ≤ C * (2 ^ IDMM.mOfMu μ n) ^ (τ + ε)
+IDMM.exists_ext_of_algClosure : ∀ (F : Type u_1) [inst : Field F] {a b c R : ℕ},
+  (OAI.MatrixMultiplication.Foundation.Tensor.matrixCoefficients (Fin a) (Fin b) (Fin c)).RankAtMost R →
+    ∃ E x x_1,
+      FiniteDimensional F E ∧
+        (∃ i, i * i = -1) ∧
+          (OAI.MatrixMultiplication.Foundation.Tensor.matrixCoefficients (Fin a) (Fin b) (Fin c)).RankAtMost R
+@IDMM.IDBoundF.of_ext : ∀ {F E : Type u_1} [inst : Field F] [inst_1 : Field E] [inst_2 : Algebra F E]
+  [FiniteDimensional F E] {c : ℝ}, 0 ≤ c → IDMM.IDBoundF E c → IDMM.IDBoundF F c
+@Matmul.RectangularRankBridge.exists_scheme_certificate : ∀ {k ε : ℝ},
+  0 ≤ k →
+    0 < ε →
+      Nonempty
+        (Matmul.RectangularRankBridge.SchemeCertificate k (Matmul.RectangularOptimization.rectangularBound k + ε))
+@IDMM.StrictNCSizeLE.ncSizeLE : ∀ {K : Type u_1} {V : Type u_2} [inst : CommRing K] {f : FreeAlgebra K V} {s : ℕ},
+  IDMM.StrictNCSizeLE f s → PauliCubes.NCSizeLE f s
+@IDMM.strict_of_bound : ∀ {F : Type u_1} [inst : Field F] {W : ℕ → Type} {f : (N : ℕ) → FreeAlgebra F (W N)} {c : ℝ},
+  0 ≤ c →
+    (∀ (ε : ℝ), 0 < ε → ∃ C, 0 < C ∧ ∀ (N : ℕ), 1 ≤ N → PauliCubes.NCSizeLE (f N) ⌊C * ↑N ^ (c + ε)⌋₊) →
+      IDMM.StrictBound f c
+@IDMM.not_strictIDBoundF_of_lt_one : ∀ {F : Type u_1} [inst : Field F] {c : ℝ}, c < 1 → ¬IDMM.StrictIDBoundF F c
+IDMM.strict_id_trivial : ∀ (F : Type u_1) [inst : Field F] (N : ℕ),
+  IDMM.StrictNCSizeLE (PauliCubes.ID F N) (2 * (4 * N ^ 2 + 2 * N + 1) + 1)
+@IDMM.not_strictNCSizeLE_zero : ∀ {K : Type u_1} {V : Type u_2} [inst : CommRing K] (f : FreeAlgebra K V),
+  ¬IDMM.StrictNCSizeLE f 0

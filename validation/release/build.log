@@ -1,19 +1,19 @@
 warning: fixed-point-theorems: repository '<repo>/.lake/packages/fixed-point-theorems' has local changes
-⚠ [8927/9449] Replayed PauliCubes.Defs
+⚠ [8928/9562] Replayed PauliCubes.Defs
 warning: PauliCubes/Defs.lean:11:0: 'Mathlib.Data.Real.Basic' has been deprecated: please replace this import by
 
 import Mathlib.Basic.Real.Basic
-⚠ [8928/9449] Replayed PauliCubes.Crossing
+⚠ [8929/9562] Replayed PauliCubes.Crossing
 warning: PauliCubes/Crossing.lean:65:10: `if_pos` has been deprecated: Use `ite_eq_left` instead
 warning: PauliCubes/Crossing.lean:66:10: `if_neg` has been deprecated: Use `ite_eq_right` instead
 warning: PauliCubes/Crossing.lean:136:13: `if_true` has been deprecated: Use `ite_true` instead
-⚠ [8931/9449] Replayed PauliCubes.Cert
+⚠ [8932/9562] Replayed PauliCubes.Cert
 warning: PauliCubes/Cert.lean:46:26: `if_neg` has been deprecated: Use `ite_eq_right` instead
 warning: PauliCubes/Cert.lean:227:15: `if_true` has been deprecated: Use `ite_true` instead
 warning: PauliCubes/Cert.lean:266:14: `if_neg` has been deprecated: Use `ite_eq_right` instead
 warning: PauliCubes/Cert.lean:289:35: `if_false` has been deprecated: Use `ite_false` instead
 warning: PauliCubes/Cert.lean:293:15: `if_true` has been deprecated: Use `ite_true` instead
-⚠ [8933/9449] Replayed PauliCubes.Cost
+⚠ [8934/9562] Replayed PauliCubes.Cost
 warning: PauliCubes/Cost.lean:90:50: `stdSimplex` has been deprecated: Use `Convexity.StdSimplex` instead
 
 Note: The updated constant has a different type:
@@ -36,7 +36,7 @@ Note: The updated constant has a different type:
 instead of
   ∀ (𝕜 : Type u_2) (ι : Type u_1) [inst : Semiring 𝕜] [inst_1 : PartialOrder 𝕜] [inst_2 : Fintype ι] [IsOrderedRing 𝕜],
     Convex 𝕜 (stdSimplex 𝕜 ι)
-⚠ [8936/9449] Replayed PauliCubes.NoCancel
+⚠ [8937/9562] Replayed PauliCubes.NoCancel
 warning: PauliCubes/NoCancel.lean:142:17: `MvPolynomial.coeff_add` has been deprecated: Use `AddMonoidAlgebra.coeff_add` instead
 
 Note: The updated constant has a different type:
@@ -46,20 +46,20 @@ instead of
     (p + q).coeff m = p.coeff m + q.coeff m
 
 Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.coeff_add` to `AddMonoidAlgebra.coeff_add x`).
-⚠ [8937/9449] Replayed PauliCubes.Main
+⚠ [8938/9562] Replayed PauliCubes.Main
 warning: PauliCubes/Main.lean:39:32: `stdSimplex` has been deprecated: Use `Convexity.StdSimplex` instead
 
 Note: The updated constant has a different type:
   (R : Type u) → [LE R] → [AddCommMonoid R] → [One R] → Type v → Type (max u v)
 instead of
   (𝕜 : Type u_2) → (ι : Type u_1) → [Semiring 𝕜] → [PartialOrder 𝕜] → [Fintype ι] → Set (ι → 𝕜)
-⚠ [8941/9449] Replayed PauliCubes.CubeCircuit
+⚠ [8942/9562] Replayed PauliCubes.CubeCircuit
 warning: PauliCubes/CubeCircuit.lean:128:20: `if_false` has been deprecated: Use `ite_false` instead
 warning: PauliCubes/CubeCircuit.lean:137:18: `if_false` has been deprecated: Use `ite_false` instead
-⚠ [8943/9449] Replayed PauliCubes.IDCircuit
+⚠ [8944/9562] Replayed PauliCubes.IDCircuit
 warning: PauliCubes/IDCircuit.lean:98:54: `if_pos` has been deprecated: Use `ite_eq_left` instead
 warning: PauliCubes/IDCircuit.lean:122:19: `dif_pos` has been deprecated: Use `dite_eq_left` instead
-⚠ [8945/9449] Replayed PauliCubes.Prop26
+⚠ [8946/9562] Replayed PauliCubes.Prop26
 warning: PauliCubes/Prop26.lean:123:51: `if_true` has been deprecated: Use `ite_true` instead
 warning: PauliCubes/Prop26.lean:128:51: `if_true` has been deprecated: Use `ite_true` instead
 warning: PauliCubes/Prop26.lean:179:88: `if_true` has been deprecated: Use `ite_true` instead
@@ -68,7 +68,7 @@ warning: PauliCubes/Prop26.lean:186:88: `if_true` has been deprecated: Use `ite_
 warning: PauliCubes/Prop26.lean:193:85: `if_true` has been deprecated: Use `ite_true` instead
 warning: PauliCubes/Prop26.lean:197:40: `if_true` has been deprecated: Use `ite_true` instead
 warning: PauliCubes/Prop26.lean:213:4: `if_true` has been deprecated: Use `ite_true` instead
-⚠ [8947/9449] Replayed IDMM.MajBasic
+⚠ [8948/9562] Replayed IDMM.MajBasic
 warning: IDMM/MajBasic.lean:47:35: This simp argument is unused:
   zmod2_one_ne_zero
 
@@ -105,9 +105,9 @@ Hint: The binding can be removed (if unused) or named `_` (if used implicitly). 
   [apply] _i
 
 Note: This linter can be disabled with `set_option linter.unusedVariables false`
-⚠ [8948/9449] Replayed IDMM.MajForms
+⚠ [8949/9562] Replayed IDMM.MajForms
 warning: IDMM/MajForms.lean:43:73: `if_true` has been deprecated: Use `ite_true` instead
-⚠ [8949/9449] Replayed IDMM.MajFourier
+⚠ [8950/9562] Replayed IDMM.MajFourier
 warning: IDMM/MajFourier.lean:23:0: automatically included section variable(s) unused in theorem `IDMM.sum_zmod2`:
   [NeZero 2]
 consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
@@ -177,12 +177,12 @@ warning: IDMM/MajFourier.lean:185:8: `if_neg` has been deprecated: Use `ite_eq_r
 warning: IDMM/MajFourier.lean:185:18: `if_neg` has been deprecated: Use `ite_eq_right` instead
 warning: IDMM/MajFourier.lean:186:8: `if_neg` has been deprecated: Use `ite_eq_right` instead
 warning: IDMM/MajFourier.lean:237:31: `if_true` has been deprecated: Use `ite_true` instead
-⚠ [8950/9449] Replayed IDMM.MajKraw
+⚠ [8951/9562] Replayed IDMM.MajKraw
 warning: IDMM/MajKraw.lean:85:8: `if_pos` has been deprecated: Use `ite_eq_left` instead
 warning: IDMM/MajKraw.lean:85:19: `if_pos` has been deprecated: Use `ite_eq_left` instead
 warning: IDMM/MajKraw.lean:86:8: `if_neg` has been deprecated: Use `ite_eq_right` instead
 warning: IDMM/MajKraw.lean:86:19: `if_neg` has been deprecated: Use `ite_eq_right` instead
-⚠ [8951/9449] Replayed IDMM.MajClass
+⚠ [8952/9562] Replayed IDMM.MajClass
 warning: IDMM/MajClass.lean:18:16: This simp argument is unused:
   zmod2_one_ne_zero
 
@@ -190,7 +190,7 @@ Hint: Omit it from the simp argument list.
   [apply] simp [sgnB]
 
 Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
-⚠ [8952/9449] Replayed IDMM.MajTransvect
+⚠ [8953/9562] Replayed IDMM.MajTransvect
 warning: IDMM/MajTransvect.lean:32:8: `if_pos` has been deprecated: Use `ite_eq_left` instead
 warning: IDMM/MajTransvect.lean:34:10: `if_pos` has been deprecated: Use `ite_eq_left` instead
 warning: IDMM/MajTransvect.lean:34:20: `if_pos` has been deprecated: Use `ite_eq_left` instead
@@ -199,7 +199,7 @@ warning: IDMM/MajTransvect.lean:37:20: `if_neg` has been deprecated: Use `ite_eq
 warning: IDMM/MajTransvect.lean:38:22: `if_neg` has been deprecated: Use `ite_eq_right` instead
 warning: IDMM/MajTransvect.lean:47:8: `if_neg` has been deprecated: Use `ite_eq_right` instead
 warning: IDMM/MajTransvect.lean:47:18: `if_neg` has been deprecated: Use `ite_eq_right` instead
-⚠ [8953/9449] Replayed IDMM.MajConj
+⚠ [8954/9562] Replayed IDMM.MajConj
 warning: IDMM/MajConj.lean:86:68: `if_true` has been deprecated: Use `ite_true` instead
 warning: IDMM/MajConj.lean:90:14: `if_true` has been deprecated: Use `ite_true` instead
 warning: IDMM/MajConj.lean:107:31: `if_pos` has been deprecated: Use `ite_eq_left` instead
@@ -231,7 +231,7 @@ Hint: Omit it from the simp argument list.
   [apply] simp [neg_smul]
 
 Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
-⚠ [8955/9449] Replayed IDMM.MajInput
+⚠ [8956/9562] Replayed IDMM.MajInput
 warning: IDMM/MajInput.lean:16:0: automatically included section variable(s) unused in theorem `IDMM.pmatM_add`:
   [NeZero 2]
   [SqrtNegOne K]
@@ -253,7 +253,7 @@ consider restructuring your `variable` declarations so that the variables are no
   omit [DecidableEq ι] in theorem ...
 
 Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
-⚠ [8956/9449] Replayed IDMM.MajCost
+⚠ [8957/9562] Replayed IDMM.MajCost
 warning: IDMM/MajCost.lean:19:0: automatically included section variable(s) unused in theorem `IDMM.leftT_mul`:
   [NeZero 2]
   [SqrtNegOne K]
@@ -325,7 +325,7 @@ consider restructuring your `variable` declarations so that the variables are no
   omit [NeZero 2] [SqrtNegOne K] in theorem ...
 
 Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
-⚠ [8966/9449] Replayed IDMM.MajBlockForm
+⚠ [8967/9562] Replayed IDMM.MajBlockForm
 warning: IDMM/MajBlockForm.lean:34:0: automatically included section variable(s) unused in theorem `IDMM.pauliWord_maj`:
   [NeZero 2]
   [SqrtNegOne K]
@@ -333,7 +333,7 @@ consider restructuring your `variable` declarations so that the variables are no
   omit [NeZero 2] [SqrtNegOne K] in theorem ...
 
 Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
-ℹ [9372/9559] Replayed Matmul.IntegerBilinear
+ℹ [9373/9562] Replayed Matmul.IntegerBilinear
 info: Matmul/IntegerBilinear.lean:136:0: 'Matmul.IntegerBilinear.Algorithm.evaluate_eq_contract' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/IntegerBilinear.lean:137:0: 'Matmul.IntegerBilinear.integer_rank_gives_universal_algorithm' depends on axioms: [propext,
  Classical.choice,
@@ -341,15 +341,15 @@ info: Matmul/IntegerBilinear.lean:137:0: 'Matmul.IntegerBilinear.integer_rank_gi
 info: Matmul/IntegerBilinear.lean:138:0: 'Matmul.IntegerBilinear.integer_matrix_rank_gives_ring_algorithm' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-ℹ [9375/9559] Replayed Matmul.IntegralConvolutionInterpolation
+ℹ [9376/9562] Replayed Matmul.IntegralConvolutionInterpolation
 info: Matmul/IntegralConvolutionInterpolation.lean:75:0: 'Matmul.IntegralConvolution.rankAtMost_det_vandermonde' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/IntegralConvolutionInterpolation.lean:76:0: 'Matmul.IntegralConvolution.exists_integer_scaled_rank' depends on axioms: [propext, Classical.choice, Quot.sound]
-ℹ [9376/9559] Replayed Matmul.IntegralConvolutionReduction
+ℹ [9377/9562] Replayed Matmul.IntegralConvolutionReduction
 info: Matmul/IntegralConvolutionReduction.lean:56:0: 'Matmul.IntegralConvolution.norm_map_of_compatible_basis' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/IntegralConvolutionReduction.lean:78:0: 'Matmul.IntegralConvolution.surjective_of_compatible_zmod_basis' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-⚠ [9377/9559] Replayed Matmul.IntegralConvolutionFiniteField
+⚠ [9378/9562] Replayed Matmul.IntegralConvolutionFiniteField
 info: Matmul/IntegralConvolutionFiniteField.lean:57:0: 'Matmul.IntegralConvolution.exists_integer_model_of_powerBasis' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
@@ -392,9 +392,9 @@ Hint: The binding can be removed (if unused) or named `_` (if used implicitly). 
 
 Note: This linter can be disabled with `set_option linter.unusedVariables false`
 info: Matmul/IntegralConvolutionFiniteField.lean:100:0: 'Matmul.IntegralConvolution.exists_prime_avoiding_nodes' depends on axioms: [propext, Classical.choice, Quot.sound]
-ℹ [9378/9559] Replayed Matmul.IntegralConvolutionNorm
+ℹ [9379/9562] Replayed Matmul.IntegralConvolutionNorm
 info: Matmul/IntegralConvolutionNorm.lean:35:0: 'Matmul.IntegralConvolution.exists_mul_eq_norm' depends on axioms: [propext, Classical.choice, Quot.sound]
-ℹ [9379/9559] Replayed Matmul.FiniteAlgebraDescent
+ℹ [9380/9562] Replayed Matmul.FiniteAlgebraDescent
 info: Matmul/FiniteAlgebraDescent.lean:155:0: 'Matmul.FiniteAlgebraDescent.integer_rank_descent' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/FiniteAlgebraDescent.lean:156:0: 'Matmul.FiniteAlgebraDescent.integer_power_rank_descent' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/FiniteAlgebraDescent.lean:157:0: 'Matmul.FiniteAlgebraDescent.integer_power_rank_descent_of_base' depends on axioms: [propext,
@@ -402,25 +402,25 @@ info: Matmul/FiniteAlgebraDescent.lean:157:0: 'Matmul.FiniteAlgebraDescent.integ
  Quot.sound]
 info: Matmul/FiniteAlgebraDescent.lean:158:0: 'Matmul.FiniteAlgebraDescent.integer_rank_patch' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/FiniteAlgebraDescent.lean:159:0: 'Matmul.FiniteAlgebraDescent.integer_power_rank_patch' depends on axioms: [propext, Classical.choice, Quot.sound]
-ℹ [9380/9559] Replayed Matmul.IntegralConvolutionPowers
+ℹ [9381/9562] Replayed Matmul.IntegralConvolutionPowers
 info: Matmul/IntegralConvolutionPowers.lean:54:0: 'Matmul.IntegralConvolution.scaled_integer_power_rank_of_base' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-ℹ [9381/9559] Replayed Matmul.IntegralConvolutionBezout
+ℹ [9382/9562] Replayed Matmul.IntegralConvolutionBezout
 info: Matmul/IntegralConvolutionBezout.lean:56:0: 'Matmul.IntegralConvolutionBezout.finite_bezout_of_prime_cover' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
 info: Matmul/IntegralConvolutionBezout.lean:57:0: 'Matmul.IntegralConvolutionBezout.finite_bezout_pow_of_prime_cover' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-ℹ [9382/9559] Replayed Matmul.IntegralConvolution
+ℹ [9383/9562] Replayed Matmul.IntegralConvolution
 info: Matmul/IntegralConvolution.lean:139:0: 'Matmul.IntegralConvolution.rankAtMost_norm_vandermonde' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/IntegralConvolution.lean:140:0: 'Matmul.IntegralConvolution.exists_prime_avoiding_power_rank' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/IntegralConvolution.lean:141:0: 'Matmul.IntegralConvolution.exists_finite_power_rank_cover' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/IntegralConvolution.lean:142:0: 'Matmul.IntegralConvolution.exists_power_rank_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/IntegralConvolution.lean:143:0: 'Matmul.IntegralConvolution.exists_pos_power_rank_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/IntegralConvolution.lean:144:0: 'Matmul.IntegralConvolution.exists_exactRank_power_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
-⚠ [9383/9559] Replayed Matmul.IntegralSeparator
+⚠ [9384/9562] Replayed Matmul.IntegralSeparator
 warning: Matmul/IntegralSeparator.lean:150:22: `if_true` has been deprecated: Use `ite_true` instead
 warning: Matmul/IntegralSeparator.lean:218:17: `if_pos` has been deprecated: Use `ite_eq_left` instead
 warning: Matmul/IntegralSeparator.lean:233:17: `if_neg` has been deprecated: Use `ite_eq_right` instead
@@ -432,11 +432,11 @@ info: Matmul/IntegralSeparator.lean:385:0: 'Matmul.IntegralSeparator.polynomialF
 info: Matmul/IntegralSeparator.lean:386:0: 'Matmul.IntegralSeparator.polynomialFamily_leading_coefficient' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-ℹ [9385/9559] Replayed Matmul.PolynomialPower
+ℹ [9386/9562] Replayed Matmul.PolynomialPower
 info: Matmul/PolynomialPower.lean:109:0: 'Matmul.PolynomialPower.coeff_prod_of_low_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/PolynomialPower.lean:110:0: 'Matmul.PolynomialPower.tensor_power_leading_coeff' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/PolynomialPower.lean:111:0: 'Matmul.PolynomialPower.tensor_restrict_power' depends on axioms: [propext, Classical.choice, Quot.sound]
-ℹ [9386/9559] Replayed Matmul.IntegralConvolutionSeparator
+ℹ [9387/9562] Replayed Matmul.IntegralConvolutionSeparator
 info: Matmul/IntegralConvolutionSeparator.lean:79:0: 'Matmul.IntegralConvolution.separator_convolution_eq_pullback' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
@@ -446,7 +446,7 @@ info: Matmul/IntegralConvolutionSeparator.lean:80:0: 'Matmul.IntegralConvolution
 info: Matmul/IntegralConvolutionSeparator.lean:81:0: 'Matmul.IntegralConvolution.exists_separator_exactRank_power_bound' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-⚠ [9388/9559] Replayed Matmul.IntegralDeterminant
+⚠ [9389/9562] Replayed Matmul.IntegralDeterminant
 warning: Matmul/IntegralDeterminant.lean:133:10: `dif_neg` has been deprecated: Use `dite_eq_right` instead
 warning: Matmul/IntegralDeterminant.lean:218:29: `dif_pos` has been deprecated: Use `dite_eq_left` instead
 warning: Matmul/IntegralDeterminant.lean:218:29: `dif_pos` has been deprecated: Use `dite_eq_left` instead
@@ -461,14 +461,14 @@ info: Matmul/IntegralDeterminant.lean:589:0: 'Matmul.IntegralDeterminant.polynom
  Classical.choice,
  Quot.sound]
 info: Matmul/IntegralDeterminant.lean:590:0: 'Matmul.IntegralDeterminant.classOf_sourceTensor_product' depends on axioms: [propext, Classical.choice, Quot.sound]
-ℹ [9389/9559] Replayed Matmul.DiscretePotential
+ℹ [9390/9562] Replayed Matmul.DiscretePotential
 info: Matmul/DiscretePotential.lean:139:0: 'Matmul.DiscretePotential.growth_coefficient_le' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/DiscretePotential.lean:140:0: 'Matmul.DiscretePotential.rpow_exponent_le' depends on axioms: [propext, Classical.choice, Quot.sound]
-ℹ [9390/9559] Replayed Matmul.DiscreteProfileCap
+ℹ [9391/9562] Replayed Matmul.DiscreteProfileCap
 info: Matmul/DiscreteProfileCap.lean:254:0: 'Matmul.DiscreteProfileCap.sequence_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/DiscreteProfileCap.lean:255:0: 'Matmul.DiscreteProfileCap.theta_cap_of_rational_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/DiscreteProfileCap.lean:256:0: 'Matmul.DiscreteProfileCap.parameter_cap_of_rational_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]
-⚠ [9391/9559] Replayed Matmul.RectangularOptimization
+⚠ [9392/9562] Replayed Matmul.RectangularOptimization
 warning: Matmul/RectangularOptimization.lean:1:0: 'Mathlib.Data.Real.Basic' has been deprecated: please replace this import by
 
 import Mathlib.Basic.Real.Basic
@@ -479,27 +479,27 @@ info: Matmul/RectangularOptimization.lean:143:0: 'Matmul.RectangularOptimization
 info: Matmul/RectangularOptimization.lean:144:0: 'Matmul.RectangularOptimization.bound_attained' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/RectangularOptimization.lean:145:0: 'Matmul.RectangularOptimization.bound_isGreatest' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/RectangularOptimization.lean:146:0: 'Matmul.RectangularOptimization.bound_isLUB' depends on axioms: [propext, Classical.choice, Quot.sound]
-ℹ [9393/9559] Replayed Matmul.UniversalCircuit
+ℹ [9394/9562] Replayed Matmul.UniversalCircuit
 info: Matmul/UniversalCircuit.lean:281:0: 'Matmul.UniversalCircuit.zscaleValue_value' depends on axioms: [propext]
 info: Matmul/UniversalCircuit.lean:282:0: 'Matmul.UniversalCircuit.zscaleValue_cost_le' depends on axioms: [propext]
 info: Matmul/UniversalCircuit.lean:283:0: 'Matmul.UniversalCircuit.linearCombination_value' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/UniversalCircuit.lean:284:0: 'Matmul.UniversalCircuit.linearCombination_cost_le' depends on axioms: [propext, Classical.choice, Quot.sound]
-ℹ [9394/9559] Replayed Matmul.BilinearMapBridge
+ℹ [9395/9562] Replayed Matmul.BilinearMapBridge
 info: Matmul/BilinearMapBridge.lean:132:0: 'Matmul.IntegerBilinear.Algorithm.evaluateBilinear_eq_contract' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
 info: Matmul/BilinearMapBridge.lean:133:0: 'Matmul.IntegerBilinear.Algorithm.rectangular_block_correct' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/BilinearMapBridge.lean:134:0: 'Matmul.IntegerBilinear.Algorithm.packed_rectangular_correct' depends on axioms: [propext, Classical.choice, Quot.sound]
-ℹ [9395/9559] Replayed Matmul.UniversalRecursionValues
+ℹ [9396/9562] Replayed Matmul.UniversalRecursionValues
 info: Matmul/UniversalRecursionValues.lean:113:0: 'Matmul.UniversalRecursion.multiply_correct' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/UniversalRecursionValues.lean:114:0: 'Matmul.UniversalRecursion.card_index' depends on axioms: [propext, Classical.choice, Quot.sound]
-ℹ [9396/9559] Replayed Matmul.RecursiveCost
+ℹ [9397/9562] Replayed Matmul.RecursiveCost
 info: Matmul/RecursiveCost.lean:186:0: 'Matmul.RecursiveCost.recurrence_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/RecursiveCost.lean:187:0: 'Matmul.RecursiveCost.work_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/RecursiveCost.lean:188:0: 'Matmul.RecursiveCost.rectangular_work_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/RecursiveCost.lean:189:0: 'Matmul.RecursiveCost.work_eventually_rpow' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/RecursiveCost.lean:190:0: 'Matmul.RecursiveCost.paddedWork_eventually_rpow' depends on axioms: [propext, Classical.choice, Quot.sound]
-ℹ [9397/9559] Replayed Matmul.UniversalRecursiveAlgorithm
+ℹ [9398/9562] Replayed Matmul.UniversalRecursiveAlgorithm
 info: Matmul/UniversalRecursiveAlgorithm.lean:353:0: 'Matmul.UniversalRecursiveAlgorithm.run_correct' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/UniversalRecursiveAlgorithm.lean:354:0: 'Matmul.UniversalRecursiveAlgorithm.run_multiplications' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/UniversalRecursiveAlgorithm.lean:355:0: 'Matmul.UniversalRecursiveAlgorithm.run_cost_le_work' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -508,12 +508,12 @@ info: Matmul/UniversalRecursiveAlgorithm.lean:357:0: 'Matmul.UniversalRecursiveA
 info: Matmul/UniversalRecursiveAlgorithm.lean:358:0: 'Matmul.UniversalRecursiveAlgorithm.run_padded_eventually_rpow' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-ℹ [9398/9559] Replayed Matmul.RectangularContinuity
+ℹ [9399/9562] Replayed Matmul.RectangularContinuity
 info: Matmul/RectangularContinuity.lean:50:0: 'Matmul.RectangularOptimization.rectangularBound_le_add_delta' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
 info: Matmul/RectangularContinuity.lean:51:0: 'Matmul.RectangularOptimization.exists_rational_upper_close' depends on axioms: [propext, Classical.choice, Quot.sound]
-⚠ [9405/9559] Replayed IDMM.BilinearExtraction
+⚠ [9405/9562] Replayed IDMM.BilinearExtraction
 warning: IDMM/BilinearExtraction.lean:30:0: automatically included section variable(s) unused in theorem `IDMM.derivativePart_mul`:
   [Fintype A]
   [Fintype B]
@@ -637,7 +637,7 @@ consider restructuring your `variable` declarations so that the variables are no
   omit [Fintype A] in theorem ...
 
 Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
-⚠ [9408/9559] Replayed IDMM.BridgeCost
+⚠ [9408/9562] Replayed IDMM.BridgeCost
 warning: IDMM/BridgeCost.lean:15:8: automatically included section variable(s) unused in theorem `_private.IDMM.BridgeCost.0.IDMM.const_input`:
   [Fintype A]
   [Fintype B]
@@ -686,26 +686,26 @@ Note: This linter can be disabled with `set_option linter.unreachableTactic fals
 warning: IDMM/BridgeCost.lean:73:48: Unused tactic linter: `simpa using const_input (A := A) (B := B) 1` does nothing
 
 Note: This linter can be disabled with `set_option linter.unusedTactic false`
-⚠ [9421/9559] Replayed IDMM.Corner
+⚠ [9421/9562] Replayed IDMM.Corner
 warning: IDMM/Corner.lean:200:0: automatically included section variable(s) unused in theorem `IDMM.Corner.P_dvd`:
   [NeZero 2]
 consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
   omit [NeZero 2] in theorem ...
 
 Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
-⚠ [9422/9559] Replayed IDMM.MajSOS
+⚠ [9422/9562] Replayed IDMM.MajSOS
 warning: IDMM/MajSOS.lean:75:10: `if_pos` has been deprecated: Use `ite_eq_left` instead
 warning: IDMM/MajSOS.lean:75:21: `if_pos` has been deprecated: Use `ite_eq_left` instead
 warning: IDMM/MajSOS.lean:76:10: `if_neg` has been deprecated: Use `ite_eq_right` instead
 warning: IDMM/MajSOS.lean:76:21: `if_neg` has been deprecated: Use `ite_eq_right` instead
-⚠ [9423/9559] Replayed IDMM.MajCircuit
+⚠ [9423/9562] Replayed IDMM.MajCircuit
 warning: IDMM/MajCircuit.lean:131:21: `dif_pos` has been deprecated: Use `dite_eq_left` instead
 warning: IDMM/MajCircuit.lean:156:19: `dif_pos` has been deprecated: Use `dite_eq_left` instead
-⚠ [9427/9559] Replayed IDMM.Construction
+⚠ [9427/9562] Replayed IDMM.Construction
 warning: IDMM/Construction.lean:131:15: `dif_pos` has been deprecated: Use `dite_eq_left` instead
 warning: IDMM/Construction.lean:134:15: `dif_pos` has been deprecated: Use `dite_eq_left` instead
 warning: IDMM/Construction.lean:137:15: `dif_pos` has been deprecated: Use `dite_eq_left` instead
-⚠ [9526/9559] Replayed IDMM.CharPTools
+⚠ [9526/9562] Replayed IDMM.CharPTools
 warning: IDMM/CharPTools.lean:49:2: Try this: 
   haveI̵
 
@@ -722,7 +722,7 @@ The difference between `have` and `haveI` is that `haveI` inlines the value.
 But this is not relevant for proofs because of proof irrelevance.
 
 Note: This linter can be disabled with `set_option linter.style.haveILetI false`
-⚠ [9528/9559] Replayed IDMM.FieldTransfer
+⚠ [9528/9562] Replayed IDMM.FieldTransfer
 warning: IDMM/FieldTransfer.lean:47:2: Try this: 
   haveI̵
 
@@ -739,56 +739,35 @@ The difference between `have` and `haveI` is that `haveI` inlines the value.
 But this is not relevant for proofs because of proof irrelevance.
 
 Note: This linter can be disabled with `set_option linter.style.haveILetI false`
-ℹ [9531/9559] Replayed IDMM.Audit
-info: IDMM/Audit.lean:3:0: 'IDMM.correct_polynomial' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/Audit.lean:4:0: 'IDMM.orderedPart_correct' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/Audit.lean:5:0: 'IDMM.reach_charge_sources' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/Audit.lean:6:0: 'IDMM.matrixAlgorithm_reach' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/Audit.lean:7:0: 'IDMM.matrixAlgorithm_reach_linear' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/Audit.lean:8:0: 'IDMM.matrixAlgorithm_ncSizeLE' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/Audit.lean:9:0: 'IDMM.rectangular_nc_shared' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/Audit.lean:10:0: 'IDMM.thin_admissible' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/Audit.lean:11:0: 'IDMM.wide_admissible' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/Audit.lean:12:0: 'IDMM.square_input' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/Audit.lean:13:0: 'IDMM.chosen_exponent_lt_target' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/Audit.lean:14:0: 'IDMM.mainTarget_of_id' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/Audit.lean:15:0: 'IDMM.mainTarget_of_remaining_bridges' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/Audit.lean:16:0: 'PauliCubes.id_circuit' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/Audit.lean:17:0: 'PauliCubes.s4_circuit' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/Audit.lean:18:0: 'PauliCubes.perm4_circuit' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/Audit.lean:20:0: IDMM.mainTarget_of_remaining_bridges (construction : IDMM.ConditionalTarget)
-  (interpolation : OAI.MatrixMultiplication.Arithmetic.RectangularAdmissibleExponent ℂ IDMM.chosenK IDMM.chosenW) :
-  IDMM.MainTarget
-info: IDMM/Audit.lean:21:0: IDMM.MainTarget : Prop
-⚠ [9534/9559] Replayed Matmul.IntegralCatalyst
+⚠ [9535/9562] Replayed Matmul.IntegralCatalyst
 warning: Matmul/IntegralCatalyst.lean:250:29: `if_neg` has been deprecated: Use `ite_eq_right` instead
-⚠ [9535/9559] Replayed Matmul.IntegralSpectrumDuality
+⚠ [9536/9562] Replayed Matmul.IntegralSpectrumDuality
 warning: Matmul/IntegralSpectrumDuality.lean:21:29: `if_neg` has been deprecated: Use `ite_eq_right` instead
 warning: Matmul/IntegralSpectrumDuality.lean:22:4: `if_neg` has been deprecated: Use `ite_eq_right` instead
 warning: Matmul/IntegralSpectrumDuality.lean:33:31: `if_pos` has been deprecated: Use `ite_eq_left` instead
 warning: Matmul/IntegralSpectrumDuality.lean:73:32: `if_neg` has been deprecated: Use `ite_eq_right` instead
 warning: Matmul/IntegralSpectrumDuality.lean:111:29: `if_neg` has been deprecated: Use `ite_eq_right` instead
 warning: Matmul/IntegralSpectrumDuality.lean:122:31: `if_neg` has been deprecated: Use `ite_eq_right` instead
-ℹ [9537/9559] Replayed Matmul.IntegerCharacter
+ℹ [9538/9562] Replayed Matmul.IntegerCharacter
 info: Matmul/IntegerCharacter.lean:383:0: 'Matmul.IntegerCharacter.value_dotClass' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/IntegerCharacter.lean:384:0: 'Matmul.IntegerCharacter.pX_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/IntegerCharacter.lean:385:0: 'Matmul.IntegerCharacter.dotClass_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/IntegerCharacter.lean:506:0: 'Matmul.IntegralCharacter.value_dotX' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/IntegerCharacter.lean:507:0: 'Matmul.IntegralCharacter.pX_ofUnitTensorClassHom' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/IntegerCharacter.lean:508:0: 'Matmul.IntegralCharacter.cyclicCharacter' depends on axioms: [propext, Classical.choice, Quot.sound]
-ℹ [9538/9559] Replayed Matmul.ConvolutionCharacter
+ℹ [9539/9562] Replayed Matmul.ConvolutionCharacter
 info: Matmul/ConvolutionCharacter.lean:243:0: 'Matmul.ConvolutionCharacter.valueXY_le' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/ConvolutionCharacter.lean:244:0: 'Matmul.ConvolutionCharacter.valueXZ_le' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/ConvolutionCharacter.lean:245:0: 'Matmul.ConvolutionCharacter.valueYZ_le' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/ConvolutionCharacter.lean:246:0: 'Matmul.ConvolutionCharacter.valueXY_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/ConvolutionCharacter.lean:247:0: 'Matmul.ConvolutionCharacter.valueXY_one_left' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/ConvolutionCharacter.lean:248:0: 'Matmul.ConvolutionCharacter.valueYZ_one_right' depends on axioms: [propext, Classical.choice, Quot.sound]
-ℹ [9539/9559] Replayed Matmul.ProfileValues
+ℹ [9540/9562] Replayed Matmul.ProfileValues
 info: Matmul/ProfileValues.lean:158:0: 'Matmul.ProfileValues.rawV_one_left' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/ProfileValues.lean:159:0: 'Matmul.ProfileValues.rawU_one_left' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/ProfileValues.lean:160:0: 'Matmul.ProfileValues.rawU_one_right' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/ProfileValues.lean:161:0: 'Matmul.ProfileValues.rawV_mono_first' depends on axioms: [propext, Classical.choice, Quot.sound]
-⚠ [9540/9559] Replayed Matmul.PolynomialCoefficient
+⚠ [9541/9562] Replayed Matmul.PolynomialCoefficient
 warning: Matmul/PolynomialCoefficient.lean:73:10: `if_pos` has been deprecated: Use `ite_eq_left` instead
 warning: Matmul/PolynomialCoefficient.lean:84:10: `if_neg` has been deprecated: Use `ite_eq_right` instead
 warning: Matmul/PolynomialCoefficient.lean:103:10: `if_pos` has been deprecated: Use `ite_eq_left` instead
@@ -803,7 +782,7 @@ info: Matmul/PolynomialCoefficient.lean:350:0: 'Matmul.PolynomialCoefficient.le_
  Classical.choice,
  Quot.sound]
 info: Matmul/PolynomialCoefficient.lean:351:0: 'Matmul.PolynomialCoefficient.polynomialRestrictionMonotone' depends on axioms: [propext, Classical.choice, Quot.sound]
-⚠ [9541/9559] Replayed Matmul.SharedLegEntropy
+⚠ [9542/9562] Replayed Matmul.SharedLegEntropy
 warning: Matmul/SharedLegEntropy.lean:47:22: `if_true` has been deprecated: Use `ite_true` instead
 warning: Matmul/SharedLegEntropy.lean:77:17: `if_pos` has been deprecated: Use `ite_eq_left` instead
 warning: Matmul/SharedLegEntropy.lean:92:17: `if_neg` has been deprecated: Use `ite_eq_right` instead
@@ -812,14 +791,14 @@ info: Matmul/SharedLegEntropy.lean:174:0: 'Matmul.SharedLegEntropy.branchPolynom
 info: Matmul/SharedLegEntropy.lean:424:0: 'Matmul.SharedLegEntropy.integral_type_comparison' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/SharedLegEntropy.lean:425:0: 'Matmul.SharedLegEntropy.log_sharedFirst_tag' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/SharedLegEntropy.lean:598:0: 'Matmul.SharedLegEntropy.sharedFirstDependent_tag' depends on axioms: [propext, choice, Quot.sound]
-ℹ [9542/9559] Replayed Matmul.SharedLegEntropyBackend
+ℹ [9543/9562] Replayed Matmul.SharedLegEntropyBackend
 info: Matmul/SharedLegEntropyBackend.lean:94:0: 'Matmul.SharedLegEntropyBackend.separatorConvolution_value_le' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
 info: Matmul/SharedLegEntropyBackend.lean:95:0: 'Matmul.SharedLegEntropyBackend.fullSharedFirst_tag' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/SharedLegEntropyBackend.lean:96:0: 'Matmul.SharedLegEntropyBackend.fullDependent_tag' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/SharedLegEntropyBackend.lean:97:0: 'Matmul.SharedLegEntropyBackend.spectralSharedFirst_tag' depends on axioms: [propext, Classical.choice, Quot.sound]
-⚠ [9543/9559] Replayed Matmul.IntegerProfileEntropy
+⚠ [9544/9562] Replayed Matmul.IntegerProfileEntropy
 warning: Matmul/IntegerProfileEntropy.lean:58:6: Try this: 
   letI̵
 
@@ -840,16 +819,16 @@ info: Matmul/IntegerProfileEntropy.lean:125:0: 'Matmul.IntegerProfileEntropy.pow
  Classical.choice,
  Quot.sound]
 info: Matmul/IntegerProfileEntropy.lean:126:0: 'Matmul.IntegerProfileEntropy.geometric_mean_powered_sum_le' depends on axioms: [propext, Classical.choice, Quot.sound]
-ℹ [9544/9559] Replayed Matmul.DeterminantLogLaws
+ℹ [9545/9562] Replayed Matmul.DeterminantLogLaws
 info: Matmul/DeterminantLogLaws.lean:183:0: 'Matmul.DeterminantLogLaws.value_graded_le_source' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/DeterminantLogLaws.lean:184:0: 'Matmul.DeterminantLogLaws.value_sharedFirst_branches' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/DeterminantLogLaws.lean:185:0: 'Matmul.DeterminantLogLaws.determinant_log' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/DeterminantLogLaws.lean:186:0: 'Matmul.DeterminantLogLaws.determinant_endpoint' depends on axioms: [propext, Classical.choice, Quot.sound]
-ℹ [9545/9559] Replayed Matmul.ConvolutionDotRestriction
+ℹ [9546/9562] Replayed Matmul.ConvolutionDotRestriction
 info: Matmul/ConvolutionDotRestriction.lean:58:0: 'Matmul.ConvolutionDotRestriction.dotZ_restrict_square' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/ConvolutionDotRestriction.lean:59:0: 'Matmul.ConvolutionDotRestriction.valueXY_square_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/ConvolutionDotRestriction.lean:60:0: 'Matmul.ConvolutionDotRestriction.rawV_square_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
-⚠ [9546/9559] Replayed Matmul.TriplingLogLaws
+⚠ [9547/9562] Replayed Matmul.TriplingLogLaws
 warning: Matmul/TriplingLogLaws.lean:87:8: `if_pos` has been deprecated: Use `ite_eq_left` instead
 warning: Matmul/TriplingLogLaws.lean:94:8: `if_neg` has been deprecated: Use `ite_eq_right` instead
 warning: Matmul/TriplingLogLaws.lean:149:45: `if_false` has been deprecated: Use `ite_false` instead
@@ -858,45 +837,45 @@ info: Matmul/TriplingLogLaws.lean:182:0: 'Matmul.TriplingLogLaws.value_middleTen
 info: Matmul/TriplingLogLaws.lean:183:0: 'Matmul.TriplingLogLaws.value_sharedFirst_branches' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/TriplingLogLaws.lean:184:0: 'Matmul.TriplingLogLaws.tripling_log' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/TriplingLogLaws.lean:185:0: 'Matmul.TriplingLogLaws.tripling_log_grouped' depends on axioms: [propext, Classical.choice, Quot.sound]
-ℹ [9547/9559] Replayed Matmul.IntegerProfileLaws
+ℹ [9548/9562] Replayed Matmul.IntegerProfileLaws
 info: Matmul/IntegerProfileLaws.lean:324:0: 'Matmul.IntegerProfileLaws.V_concave_second' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/IntegerProfileLaws.lean:325:0: 'Matmul.IntegerProfileLaws.U_concave_first' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/IntegerProfileLaws.lean:326:0: 'Matmul.IntegerProfileLaws.V_tripling' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/IntegerProfileLaws.lean:327:0: 'Matmul.IntegerProfileLaws.U_tripling' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/IntegerProfileLaws.lean:328:0: 'Matmul.IntegerProfileLaws.U_self_tripling' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/IntegerProfileLaws.lean:329:0: 'Matmul.IntegerProfileLaws.rawV_two_two_le_of_a_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
-ℹ [9548/9559] Replayed Matmul.DiscreteSlopes
+ℹ [9549/9562] Replayed Matmul.DiscreteSlopes
 info: Matmul/DiscreteSlopes.lean:437:0: 'Matmul.DiscreteSlopes.exists_common_profile_slopes' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/DiscreteSlopes.lean:438:0: 'Matmul.DiscreteSlopes.long_increment_of_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
-ℹ [9549/9559] Replayed Matmul.DiscreteFirstIncrement
+ℹ [9550/9562] Replayed Matmul.DiscreteFirstIncrement
 info: Matmul/DiscreteFirstIncrement.lean:95:0: 'Matmul.DiscreteFirstIncrement.first_increment_of_self_tripling' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-ℹ [9550/9559] Replayed Matmul.DiscreteProfiles
+ℹ [9551/9562] Replayed Matmul.DiscreteProfiles
 info: Matmul/DiscreteProfiles.lean:375:0: 'Matmul.DiscreteProfiles.exists_slope_data' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/DiscreteProfiles.lean:376:0: 'Matmul.DiscreteProfiles.diagonal_sequence_step' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/DiscreteProfiles.lean:377:0: 'Matmul.DiscreteProfiles.rational_ratio_of_discrete_data' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/DiscreteProfiles.lean:378:0: 'Matmul.DiscreteProfiles.rational_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]
-ℹ [9551/9559] Replayed Matmul.DiscreteSmallParameter
+ℹ [9552/9562] Replayed Matmul.DiscreteSmallParameter
 info: Matmul/DiscreteSmallParameter.lean:103:0: 'Matmul.DiscreteSmallParameter.theta_le_two' depends on axioms: [propext, Classical.choice, Quot.sound]
-ℹ [9552/9559] Replayed Matmul.DiscreteParameterCap
+ℹ [9553/9562] Replayed Matmul.DiscreteParameterCap
 info: Matmul/DiscreteParameterCap.lean:38:0: 'Matmul.DiscreteProfiles.theta_cap' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/DiscreteParameterCap.lean:39:0: 'Matmul.DiscreteProfiles.parameter_cap' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/DiscreteParameterCap.lean:40:0: 'Matmul.DiscreteProfiles.rectangular_objective_le' depends on axioms: [propext, Classical.choice, Quot.sound]
-ℹ [9553/9559] Replayed Matmul.IntegerProfileCap
+ℹ [9554/9562] Replayed Matmul.IntegerProfileCap
 info: Matmul/IntegerProfileCap.lean:134:0: 'Matmul.IntegerProfileCap.actualDiscreteData' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/IntegerProfileCap.lean:135:0: 'Matmul.IntegerProfileCap.actual_integer_character_cap' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/IntegerProfileCap.lean:136:0: 'Matmul.IntegerProfileCap.actual_rectangular_objective_le' depends on axioms: [propext, Classical.choice, Quot.sound]
-ℹ [9554/9559] Replayed Matmul.MatrixCharacter
+ℹ [9555/9562] Replayed Matmul.MatrixCharacter
 info: Matmul/MatrixCharacter.lean:123:0: 'Matmul.MatrixCharacter.tripleDot_matrixTensor' depends on axioms: [propext, Quot.sound]
 info: Matmul/MatrixCharacter.lean:124:0: 'Matmul.MatrixCharacter.value_matrixTensor' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/MatrixCharacter.lean:125:0: 'Matmul.MatrixCharacter.matrixClass_power_law' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/MatrixCharacter.lean:126:0: 'Matmul.MatrixCharacter.value_rectangular_matrixTensor_le' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/MatrixCharacter.lean:127:0: 'Matmul.MatrixCharacter.matrixClass_ceil_le' depends on axioms: [propext, Classical.choice, Quot.sound]
-ℹ [9555/9559] Replayed Matmul.RectangularRankBridge
+ℹ [9556/9562] Replayed Matmul.RectangularRankBridge
 info: Matmul/RectangularRankBridge.lean:134:0: 'Matmul.RectangularRankBridge.matrix_asymptoticRank_ceil_le' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: Matmul/RectangularRankBridge.lean:135:0: 'Matmul.RectangularRankBridge.exists_scheme_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
-⚠ [9556/9559] Replayed IDMM.EveryChar
+⚠ [9557/9562] Replayed IDMM.EveryChar
 warning: IDMM/EveryChar.lean:73:2: Try this: 
   haveI̵
 
@@ -913,53 +892,252 @@ The difference between `have` and `haveI` is that `haveI` inlines the value.
 But this is not relevant for proofs because of proof irrelevance.
 
 Note: This linter can be disabled with `set_option linter.style.haveILetI false`
-ℹ [9557/9559] Replayed IDMM.FinalAuditEveryChar
-info: IDMM/FinalAuditEveryChar.lean:6:0: 'IDMM.id_bound_every_char' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/FinalAuditEveryChar.lean:7:0: 'IDMM.rankAtMost_of_scheme' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/FinalAuditEveryChar.lean:8:0: 'IDMM.uz_exponent_slack' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/FinalAuditEveryChar.lean:9:0: 'IDMM.construction_gen' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/FinalAuditEveryChar.lean:10:0: 'IDMM.oracles_of_scheme' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/FinalAuditEveryChar.lean:11:0: 'IDMM.exists_ext_of_algClosure' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/FinalAuditEveryChar.lean:12:0: 'IDMM.IDBoundF.of_ext' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/FinalAuditEveryChar.lean:13:0: 'Matmul.RectangularRankBridge.exists_scheme_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/FinalAuditEveryChar.lean:14:0: IDMM.id_bound_every_char : ∀ (F : Type u_1) [inst : Field F],
+ℹ [9559/9562] Replayed IDMM.Audit
+info: IDMM/Audit.lean:3:0: 'IDMM.correct_polynomial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/Audit.lean:4:0: 'IDMM.orderedPart_correct' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/Audit.lean:5:0: 'IDMM.reach_charge_sources' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/Audit.lean:6:0: 'IDMM.matrixAlgorithm_reach' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/Audit.lean:7:0: 'IDMM.matrixAlgorithm_reach_linear' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/Audit.lean:8:0: 'IDMM.matrixAlgorithm_ncSizeLE' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/Audit.lean:9:0: 'IDMM.rectangular_nc_shared' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/Audit.lean:10:0: 'IDMM.thin_admissible' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/Audit.lean:11:0: 'IDMM.wide_admissible' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/Audit.lean:12:0: 'IDMM.square_input' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/Audit.lean:13:0: 'IDMM.chosen_exponent_lt_target' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/Audit.lean:14:0: 'IDMM.mainTarget_of_id' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/Audit.lean:15:0: 'IDMM.mainTarget_of_remaining_bridges' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/Audit.lean:16:0: 'PauliCubes.id_circuit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/Audit.lean:17:0: 'PauliCubes.s4_circuit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/Audit.lean:18:0: 'PauliCubes.perm4_circuit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/Audit.lean:20:0: IDMM.mainTarget_of_remaining_bridges (construction : IDMM.ConditionalTarget)
+  (interpolation : OAI.MatrixMultiplication.Arithmetic.RectangularAdmissibleExponent ℂ IDMM.chosenK IDMM.chosenW) :
+  IDMM.MainTarget
+info: IDMM/Audit.lean:21:0: IDMM.MainTarget : Prop
+ℹ [9560/9562] Built IDMM.FinalAuditEveryChar (14s)
+info: IDMM/FinalAuditEveryChar.lean:7:0: 'IDMM.id_bound_every_char' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAuditEveryChar.lean:8:0: 'IDMM.rankAtMost_of_scheme' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAuditEveryChar.lean:9:0: 'IDMM.uz_exponent_slack' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAuditEveryChar.lean:10:0: 'IDMM.construction_gen' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAuditEveryChar.lean:11:0: 'IDMM.oracles_of_scheme' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAuditEveryChar.lean:12:0: 'IDMM.exists_ext_of_algClosure' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAuditEveryChar.lean:13:0: 'IDMM.IDBoundF.of_ext' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAuditEveryChar.lean:14:0: 'Matmul.RectangularRankBridge.exists_scheme_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAuditEveryChar.lean:15:0: IDMM.id_bound_every_char : ∀ (F : Type u_1) [inst : Field F],
   ringChar F ≠ 2 → IDMM.IDBoundF F (4173 / 2500) ∧ IDMM.S4BoundF F (4173 / 2500) ∧ IDMM.Perm4BoundF F (4173 / 2500)
-info: IDMM/FinalAuditEveryChar.lean:15:0: def IDMM.IDBoundF.{u} : (F : Type u) → [Field F] → ℝ → Prop :=
+info: IDMM/FinalAuditEveryChar.lean:16:0: def IDMM.IDBoundF.{u} : (F : Type u) → [Field F] → ℝ → Prop :=
 fun F [Field F] c =>
   ∀ (ε : ℝ), 0 < ε → ∃ C, 0 < C ∧ ∀ (N : ℕ), 1 ≤ N → PauliCubes.NCSizeLE (PauliCubes.ID F N) ⌊C * ↑N ^ (c + ε)⌋₊
-info: IDMM/FinalAuditEveryChar.lean:16:0: def IDMM.S4BoundF.{u} : (F : Type u) → [Field F] → ℝ → Prop :=
+info: IDMM/FinalAuditEveryChar.lean:17:0: def IDMM.S4BoundF.{u} : (F : Type u) → [Field F] → ℝ → Prop :=
 fun F [Field F] c =>
   ∀ (ε : ℝ), 0 < ε → ∃ C, 0 < C ∧ ∀ (N : ℕ), 1 ≤ N → PauliCubes.NCSizeLE (PauliCubes.S4 F N) ⌊C * ↑N ^ (c + ε)⌋₊
-info: IDMM/FinalAuditEveryChar.lean:17:0: def IDMM.Perm4BoundF.{u} : (F : Type u) → [Field F] → ℝ → Prop :=
+info: IDMM/FinalAuditEveryChar.lean:18:0: def IDMM.Perm4BoundF.{u} : (F : Type u) → [Field F] → ℝ → Prop :=
 fun F [Field F] c =>
   ∀ (ε : ℝ), 0 < ε → ∃ C, 0 < C ∧ ∀ (N : ℕ), 1 ≤ N → PauliCubes.NCSizeLE (PauliCubes.perm4 F N) ⌊C * ↑N ^ (c + ε)⌋₊
-ℹ [9558/9559] Replayed IDMM.FinalAudit
-info: IDMM/FinalAudit.lean:5:0: 'IDMM.main_target' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/FinalAudit.lean:6:0: 'IDMM.main_target_almost_every_char' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/FinalAudit.lean:7:0: 'IDMM.main_target_char_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/FinalAudit.lean:8:0: 'IDMM.construction_almost_every_char' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/FinalAudit.lean:9:0: 'IDMM.construction_char_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/FinalAudit.lean:10:0: 'IDMM.IDBoundF.of_forall_add' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/FinalAudit.lean:11:0: 'IDMM.thin_main' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: IDMM/FinalAudit.lean:12:0: IDMM.main_target : IDMM.MainTarget
-info: IDMM/FinalAudit.lean:13:0: IDMM.main_target_almost_every_char.{u} :
+info: IDMM/FinalAuditEveryChar.lean:19:0: 'IDMM.strict_id_bound_every_char' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAuditEveryChar.lean:20:0: 'IDMM.id_bound_every_char_rat' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAuditEveryChar.lean:21:0: 'IDMM.id_bound_every_char_zmod3' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAuditEveryChar.lean:22:0: 'IDMM.ncSizeLE_strict' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAuditEveryChar.lean:23:0: 'IDMM.StrictNCSizeLE.ncSizeLE' depends on axioms: [propext, Quot.sound]
+info: IDMM/FinalAuditEveryChar.lean:24:0: 'IDMM.strict_of_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAuditEveryChar.lean:25:0: 'IDMM.two_mul_le_of_ncSizeLE_ID' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAuditEveryChar.lean:26:0: 'IDMM.not_idBoundF_of_lt_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAuditEveryChar.lean:27:0: 'IDMM.not_strictIDBoundF_of_lt_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAuditEveryChar.lean:28:0: 'IDMM.strict_id_trivial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAuditEveryChar.lean:29:0: 'IDMM.not_strictNCSizeLE_zero' depends on axioms: [propext, Quot.sound]
+info: IDMM/FinalAuditEveryChar.lean:30:0: IDMM.strict_id_bound_every_char : ∀ (F : Type u_1) [inst : Field F],
+  ringChar F ≠ 2 →
+    IDMM.StrictIDBoundF F (4173 / 2500) ∧ IDMM.StrictS4BoundF F (4173 / 2500) ∧ IDMM.StrictPerm4BoundF F (4173 / 2500)
+info: IDMM/FinalAuditEveryChar.lean:31:0: IDMM.id_bound_every_char_rat : IDMM.IDBoundF ℚ (4173 / 2500) ∧
+  IDMM.S4BoundF ℚ (4173 / 2500) ∧ IDMM.Perm4BoundF ℚ (4173 / 2500)
+info: IDMM/FinalAuditEveryChar.lean:32:0: IDMM.id_bound_every_char_zmod3 : IDMM.IDBoundF (ZMod 3) (4173 / 2500) ∧
+  IDMM.S4BoundF (ZMod 3) (4173 / 2500) ∧ IDMM.Perm4BoundF (ZMod 3) (4173 / 2500)
+info: IDMM/FinalAuditEveryChar.lean:33:0: @IDMM.two_mul_le_of_ncSizeLE_ID : ∀ {F : Type u_1} [inst : Field F] {N s : ℕ},
+  PauliCubes.NCSizeLE (PauliCubes.ID F N) s → 2 * N ≤ s
+info: IDMM/FinalAuditEveryChar.lean:34:0: @IDMM.not_idBoundF_of_lt_one : ∀ {F : Type u_1} [inst : Field F] {c : ℝ}, c < 1 → ¬IDMM.IDBoundF F c
+info: IDMM/FinalAuditEveryChar.lean:35:0: @IDMM.ncSizeLE_strict : ∀ {K : Type u_1} {V : Type u_2} [inst : CommRing K] {f : FreeAlgebra K V} {s : ℕ},
+  PauliCubes.NCSizeLE f s → IDMM.StrictNCSizeLE f (2 * s + 1)
+info: IDMM/FinalAuditEveryChar.lean:36:0: @IDMM.rankAtMost_of_scheme : ∀ {K : Type u_1} [inst : CommRing K] {a b ρ : ℕ}
+  (alg : Matmul.UniversalRecursiveAlgorithm.Scheme a b a ρ),
+  Matmul.IntegerBilinear.Algorithm.tensor alg = Matmul.IntegerBilinear.matrixTensor a b a →
+    (OAI.MatrixMultiplication.Foundation.Tensor.matrixCoefficients (Fin a) (Fin b) (Fin a)).RankAtMost ρ
+info: IDMM/FinalAuditEveryChar.lean:37:0: IDMM.uz_exponent_slack : IDMM.constructionExponent (18 / 29) (200 / 99) + 1 / 10 ^ 5 < 4173 / 2500
+info: IDMM/FinalAuditEveryChar.lean:38:0: @IDMM.construction_gen : ∀ {μ : ℝ} {K : Type u_1} [inst : Field K] [NeZero 2] [IDMM.SqrtNegOne K],
+  1 / 2 < μ →
+    μ < 1 →
+      ∀ {w : ℝ},
+        2 ≤ w →
+          (∀ (ε : ℝ),
+              0 < ε →
+                ∃ C,
+                  0 < C ∧
+                    ∀ (n : ℕ),
+                      ∃ M,
+                        IDMM.BlockMM (PauliCubes.ncInputs K ((Fin n → Fin 2) ⊕ (Fin n → Fin 2))) (IDMM.mOfMu μ n)
+                            (n - IDMM.mOfMu μ n) M ∧
+                          ↑M ≤ C * (2 ^ IDMM.mOfMu μ n) ^ (w + ε)) →
+            IDMM.IDBoundF K (IDMM.constructionExponent μ w)
+info: IDMM/FinalAuditEveryChar.lean:39:0: @IDMM.oracles_of_scheme : ∀ {K : Type u_1} [inst : Field K] {μ : ℝ},
+  1 / 2 < μ →
+    μ < 1 →
+      ∀ {a b R : ℕ},
+        (OAI.MatrixMultiplication.Foundation.Tensor.matrixCoefficients (Fin a) (Fin b) (Fin a)).RankAtMost R →
+          2 ≤ a →
+            ∀ {τ : ℝ},
+              ↑a ^ ((1 - μ) / μ) ≤ ↑b →
+                ↑R ≤ ↑a ^ τ →
+                  ↑(a * b) ≤ ↑a ^ τ →
+                    ↑a ^ 2 ≤ ↑a ^ τ →
+                      ∀ {ε : ℝ},
+                        0 < ε →
+                          ∃ C,
+                            0 < C ∧
+                              ∀ (n : ℕ),
+                                ∃ M,
+                                  IDMM.BlockMM (PauliCubes.ncInputs K ((Fin n → Fin 2) ⊕ (Fin n → Fin 2)))
+                                      (IDMM.mOfMu μ n) (n - IDMM.mOfMu μ n) M ∧
+                                    ↑M ≤ C * (2 ^ IDMM.mOfMu μ n) ^ (τ + ε)
+info: IDMM/FinalAuditEveryChar.lean:40:0: IDMM.exists_ext_of_algClosure : ∀ (F : Type u_1) [inst : Field F] {a b c R : ℕ},
+  (OAI.MatrixMultiplication.Foundation.Tensor.matrixCoefficients (Fin a) (Fin b) (Fin c)).RankAtMost R →
+    ∃ E x x_1,
+      FiniteDimensional F E ∧
+        (∃ i, i * i = -1) ∧
+          (OAI.MatrixMultiplication.Foundation.Tensor.matrixCoefficients (Fin a) (Fin b) (Fin c)).RankAtMost R
+info: IDMM/FinalAuditEveryChar.lean:41:0: @IDMM.IDBoundF.of_ext : ∀ {F E : Type u_1} [inst : Field F] [inst_1 : Field E] [inst_2 : Algebra F E]
+  [FiniteDimensional F E] {c : ℝ}, 0 ≤ c → IDMM.IDBoundF E c → IDMM.IDBoundF F c
+info: IDMM/FinalAuditEveryChar.lean:42:0: @Matmul.RectangularRankBridge.exists_scheme_certificate : ∀ {k ε : ℝ},
+  0 ≤ k →
+    0 < ε →
+      Nonempty
+        (Matmul.RectangularRankBridge.SchemeCertificate k (Matmul.RectangularOptimization.rectangularBound k + ε))
+info: IDMM/FinalAuditEveryChar.lean:43:0: @IDMM.StrictNCSizeLE.ncSizeLE : ∀ {K : Type u_1} {V : Type u_2} [inst : CommRing K] {f : FreeAlgebra K V} {s : ℕ},
+  IDMM.StrictNCSizeLE f s → PauliCubes.NCSizeLE f s
+info: IDMM/FinalAuditEveryChar.lean:44:0: @IDMM.strict_of_bound : ∀ {F : Type u_1} [inst : Field F] {W : ℕ → Type} {f : (N : ℕ) → FreeAlgebra F (W N)} {c : ℝ},
+  0 ≤ c →
+    (∀ (ε : ℝ), 0 < ε → ∃ C, 0 < C ∧ ∀ (N : ℕ), 1 ≤ N → PauliCubes.NCSizeLE (f N) ⌊C * ↑N ^ (c + ε)⌋₊) →
+      IDMM.StrictBound f c
+info: IDMM/FinalAuditEveryChar.lean:45:0: @IDMM.not_strictIDBoundF_of_lt_one : ∀ {F : Type u_1} [inst : Field F] {c : ℝ}, c < 1 → ¬IDMM.StrictIDBoundF F c
+info: IDMM/FinalAuditEveryChar.lean:46:0: IDMM.strict_id_trivial : ∀ (F : Type u_1) [inst : Field F] (N : ℕ),
+  IDMM.StrictNCSizeLE (PauliCubes.ID F N) (2 * (4 * N ^ 2 + 2 * N + 1) + 1)
+info: IDMM/FinalAuditEveryChar.lean:47:0: @IDMM.not_strictNCSizeLE_zero : ∀ {K : Type u_1} {V : Type u_2} [inst : CommRing K] (f : FreeAlgebra K V),
+  ¬IDMM.StrictNCSizeLE f 0
+ℹ [9561/9562] Built IDMM.FinalAudit (14s)
+info: IDMM/FinalAudit.lean:6:0: 'IDMM.main_target' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAudit.lean:7:0: 'IDMM.main_target_almost_every_char' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAudit.lean:8:0: 'IDMM.main_target_char_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAudit.lean:9:0: 'IDMM.construction_almost_every_char' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAudit.lean:10:0: 'IDMM.construction_char_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAudit.lean:11:0: 'IDMM.IDBoundF.of_forall_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAudit.lean:12:0: 'IDMM.thin_main' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAudit.lean:13:0: IDMM.main_target : IDMM.MainTarget
+info: IDMM/FinalAudit.lean:14:0: IDMM.main_target_almost_every_char.{u} :
   ∃ S,
     ∀ (F : Type u) [inst : Field F],
       ringChar F ≠ 2 →
         ringChar F = 0 ∨ ringChar F ∉ S →
           IDMM.IDBoundF F IDMM.targetExponent ∧
             IDMM.S4BoundF F IDMM.targetExponent ∧ IDMM.Perm4BoundF F IDMM.targetExponent
-info: IDMM/FinalAudit.lean:14:0: IDMM.main_target_char_zero.{u} (F : Type u) [Field F] [CharZero F] :
+info: IDMM/FinalAudit.lean:15:0: IDMM.main_target_char_zero.{u} (F : Type u) [Field F] [CharZero F] :
   IDMM.IDBoundF F IDMM.targetExponent ∧ IDMM.S4BoundF F IDMM.targetExponent ∧ IDMM.Perm4BoundF F IDMM.targetExponent
-info: IDMM/FinalAudit.lean:15:0: IDMM.construction_almost_every_char.{u} {μ w c : ℝ} (hμ0 : 1 / 2 < μ) (hμ1 : μ < 1)
+info: IDMM/FinalAudit.lean:16:0: IDMM.construction_almost_every_char.{u} {μ w c : ℝ} (hμ0 : 1 / 2 < μ) (hμ1 : μ < 1)
   (hw : OAI.MatrixMultiplication.Arithmetic.RectangularAdmissibleExponent ℂ ((1 - μ) / μ) w) (hc : 1 ≤ c)
   (hgap : IDMM.constructionExponent μ w < c) :
   ∃ S,
     ∀ (F : Type u) [inst : Field F],
       ringChar F ≠ 2 → ringChar F = 0 ∨ ringChar F ∉ S → IDMM.IDBoundF F c ∧ IDMM.S4BoundF F c ∧ IDMM.Perm4BoundF F c
-info: IDMM/FinalAudit.lean:16:0: IDMM.construction_char_zero.{u} (F : Type u) [Field F] [CharZero F] {μ w : ℝ} (hμ0 : 1 / 2 < μ) (hμ1 : μ < 1)
+info: IDMM/FinalAudit.lean:17:0: IDMM.construction_char_zero.{u} (F : Type u) [Field F] [CharZero F] {μ w : ℝ} (hμ0 : 1 / 2 < μ) (hμ1 : μ < 1)
   (hw : OAI.MatrixMultiplication.Arithmetic.RectangularAdmissibleExponent ℂ ((1 - μ) / μ) w)
   (hc : 1 ≤ IDMM.constructionExponent μ w) :
   IDMM.IDBoundF F (IDMM.constructionExponent μ w) ∧
     IDMM.S4BoundF F (IDMM.constructionExponent μ w) ∧ IDMM.Perm4BoundF F (IDMM.constructionExponent μ w)
-Build completed successfully (9559 jobs).
+info: IDMM/FinalAudit.lean:18:0: 'IDMM.strict_main_target' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAudit.lean:19:0: 'IDMM.strict_main_target_char_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAudit.lean:20:0: 'IDMM.strict_main_target_almost_every_char' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAudit.lean:21:0: 'IDMM.cubes_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAudit.lean:22:0: 'IDMM.strict_cubes_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAudit.lean:23:0: 'IDMM.ncSizeLE_strict' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAudit.lean:24:0: 'IDMM.StrictNCSizeLE.ncSizeLE' depends on axioms: [propext, Quot.sound]
+info: IDMM/FinalAudit.lean:25:0: 'IDMM.strict_of_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAudit.lean:26:0: 'IDMM.two_mul_le_of_ncSizeLE_ID' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAudit.lean:27:0: 'IDMM.not_idBoundF_of_lt_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAudit.lean:28:0: 'IDMM.not_strictIDBoundF_of_lt_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAudit.lean:29:0: 'IDMM.strict_id_trivial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAudit.lean:30:0: 'IDMM.not_strictNCSizeLE_zero' depends on axioms: [propext, Quot.sound]
+info: IDMM/FinalAudit.lean:31:0: IDMM.strict_main_target : IDMM.StrictIDBoundF ℂ IDMM.targetExponent ∧
+  IDMM.StrictS4BoundF ℂ IDMM.targetExponent ∧ IDMM.StrictPerm4BoundF ℂ IDMM.targetExponent
+info: IDMM/FinalAudit.lean:32:0: IDMM.strict_main_target_char_zero : ∀ (F : Type u_1) [inst : Field F] [CharZero F],
+  IDMM.StrictIDBoundF F IDMM.targetExponent ∧
+    IDMM.StrictS4BoundF F IDMM.targetExponent ∧ IDMM.StrictPerm4BoundF F IDMM.targetExponent
+info: IDMM/FinalAudit.lean:33:0: IDMM.strict_main_target_almost_every_char : ∃ S,
+  ∀ (F : Type u_1) [inst : Field F],
+    ringChar F ≠ 2 →
+      ringChar F = 0 ∨ ringChar F ∉ S →
+        IDMM.StrictIDBoundF F IDMM.targetExponent ∧
+          IDMM.StrictS4BoundF F IDMM.targetExponent ∧ IDMM.StrictPerm4BoundF F IDMM.targetExponent
+info: IDMM/FinalAudit.lean:34:0: IDMM.cubes_bound : ∀ (K : Type u_1) [inst : Field K],
+  2 ≠ 0 → IDMM.IDBoundF K 1.727899 ∧ IDMM.S4BoundF K 1.727899 ∧ IDMM.Perm4BoundF K 1.727899
+info: IDMM/FinalAudit.lean:35:0: IDMM.strict_cubes_bound : ∀ (K : Type u_1) [inst : Field K],
+  2 ≠ 0 → IDMM.StrictIDBoundF K 1.727899 ∧ IDMM.StrictS4BoundF K 1.727899 ∧ IDMM.StrictPerm4BoundF K 1.727899
+info: IDMM/FinalAudit.lean:36:0: def IDMM.StrictNCSizeLE.{u_1, u_2} : {K : Type u_1} →
+  {V : Type u_2} → [inst : CommRing K] → FreeAlgebra K V → ℕ → Prop :=
+fun {K} {V} [CommRing K] f s => ∃ gs, IDMM.StrictBuilds (PauliCubes.ncInputs K V) gs ∧ gs.length ≤ s ∧ f ∈ gs
+info: IDMM/FinalAudit.lean:37:0: def IDMM.StrictBuilds.{u_1} : {R : Type u_1} → [Ring R] → Set R → List R → Prop :=
+fun {R} [Ring R] inp gs =>
+  ∀ (k : ℕ) (g : R),
+    gs[k]? = some g →
+      g ∈ inp ∨ ∃ i j a b, i < k ∧ j < k ∧ i ≠ j ∧ gs[i]? = some a ∧ gs[j]? = some b ∧ (g = a + b ∨ g = a * b)
+info: IDMM/FinalAudit.lean:38:0: 'IDMM.construction_gen' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAudit.lean:39:0: 'IDMM.construction_target' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAudit.lean:40:0: 'PauliCubes.id_circuit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAudit.lean:41:0: 'PauliCubes.s4_circuit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAudit.lean:42:0: 'PauliCubes.perm4_circuit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: IDMM/FinalAudit.lean:43:0: @IDMM.IDBoundF.of_forall_add : ∀ {F : Type u_1} [inst : Field F] {c : ℝ},
+  (∀ (δ : ℝ), 0 < δ → IDMM.IDBoundF F (c + δ)) → IDMM.IDBoundF F c
+info: IDMM/FinalAudit.lean:44:0: IDMM.thin_main : IDMM.IDBound (16939 / 10000) ∧ IDMM.S4Bound (16939 / 10000) ∧ IDMM.Perm4Bound (16939 / 10000)
+info: IDMM/FinalAudit.lean:45:0: @IDMM.construction_gen : ∀ {μ : ℝ} {K : Type u_1} [inst : Field K] [NeZero 2] [IDMM.SqrtNegOne K],
+  1 / 2 < μ →
+    μ < 1 →
+      ∀ {w : ℝ},
+        2 ≤ w →
+          (∀ (ε : ℝ),
+              0 < ε →
+                ∃ C,
+                  0 < C ∧
+                    ∀ (n : ℕ),
+                      ∃ M,
+                        IDMM.BlockMM (PauliCubes.ncInputs K ((Fin n → Fin 2) ⊕ (Fin n → Fin 2))) (IDMM.mOfMu μ n)
+                            (n - IDMM.mOfMu μ n) M ∧
+                          ↑M ≤ C * (2 ^ IDMM.mOfMu μ n) ^ (w + ε)) →
+            IDMM.IDBoundF K (IDMM.constructionExponent μ w)
+info: IDMM/FinalAudit.lean:46:0: IDMM.construction_target : IDMM.ConditionalTarget
+info: IDMM/FinalAudit.lean:47:0: def IDMM.MainTarget : Prop :=
+IDMM.IDBound IDMM.targetExponent ∧ IDMM.S4Bound IDMM.targetExponent ∧ IDMM.Perm4Bound IDMM.targetExponent
+info: IDMM/FinalAudit.lean:48:0: def IDMM.ConditionalTarget : Prop :=
+∀ (μ w : ℝ),
+  1 / 2 < μ →
+    μ < 1 →
+      OAI.MatrixMultiplication.Arithmetic.RectangularAdmissibleExponent ℂ ((1 - μ) / μ) w →
+        IDMM.IDBound (IDMM.constructionExponent μ w)
+info: IDMM/FinalAudit.lean:49:0: @PauliCubes.id_circuit : ∀ {K : Type u_1} [inst : Field K],
+  2 ≠ 0 → ∀ {ε : ℝ}, 0 < ε → ∃ C, ∀ (N : ℕ), 1 ≤ N → PauliCubes.NCSizeLE (PauliCubes.ID K N) ⌊C * ↑N ^ (1.727899 + ε)⌋₊
+info: IDMM/FinalAudit.lean:50:0: @PauliCubes.s4_circuit : ∀ {K : Type u_1} [inst : Field K],
+  2 ≠ 0 → ∀ {ε : ℝ}, 0 < ε → ∃ C, ∀ (N : ℕ), 1 ≤ N → PauliCubes.NCSizeLE (PauliCubes.S4 K N) ⌊C * ↑N ^ (1.727899 + ε)⌋₊
+info: IDMM/FinalAudit.lean:51:0: @PauliCubes.perm4_circuit : ∀ {K : Type u_1} [inst : Field K],
+  2 ≠ 0 →
+    ∀ {ε : ℝ}, 0 < ε → ∃ C, ∀ (N : ℕ), 1 ≤ N → PauliCubes.NCSizeLE (PauliCubes.perm4 K N) ⌊C * ↑N ^ (1.727899 + ε)⌋₊
+info: IDMM/FinalAudit.lean:52:0: @IDMM.ncSizeLE_strict : ∀ {K : Type u_1} {V : Type u_2} [inst : CommRing K] {f : FreeAlgebra K V} {s : ℕ},
+  PauliCubes.NCSizeLE f s → IDMM.StrictNCSizeLE f (2 * s + 1)
+info: IDMM/FinalAudit.lean:53:0: @IDMM.StrictNCSizeLE.ncSizeLE : ∀ {K : Type u_1} {V : Type u_2} [inst : CommRing K] {f : FreeAlgebra K V} {s : ℕ},
+  IDMM.StrictNCSizeLE f s → PauliCubes.NCSizeLE f s
+info: IDMM/FinalAudit.lean:54:0: @IDMM.strict_of_bound : ∀ {F : Type u_1} [inst : Field F] {W : ℕ → Type} {f : (N : ℕ) → FreeAlgebra F (W N)} {c : ℝ},
+  0 ≤ c →
+    (∀ (ε : ℝ), 0 < ε → ∃ C, 0 < C ∧ ∀ (N : ℕ), 1 ≤ N → PauliCubes.NCSizeLE (f N) ⌊C * ↑N ^ (c + ε)⌋₊) →
+      IDMM.StrictBound f c
+info: IDMM/FinalAudit.lean:55:0: @IDMM.two_mul_le_of_ncSizeLE_ID : ∀ {F : Type u_1} [inst : Field F] {N s : ℕ},
+  PauliCubes.NCSizeLE (PauliCubes.ID F N) s → 2 * N ≤ s
+info: IDMM/FinalAudit.lean:56:0: @IDMM.not_idBoundF_of_lt_one : ∀ {F : Type u_1} [inst : Field F] {c : ℝ}, c < 1 → ¬IDMM.IDBoundF F c
+info: IDMM/FinalAudit.lean:57:0: @IDMM.not_strictIDBoundF_of_lt_one : ∀ {F : Type u_1} [inst : Field F] {c : ℝ}, c < 1 → ¬IDMM.StrictIDBoundF F c
+info: IDMM/FinalAudit.lean:58:0: IDMM.strict_id_trivial : ∀ (F : Type u_1) [inst : Field F] (N : ℕ),
+  IDMM.StrictNCSizeLE (PauliCubes.ID F N) (2 * (4 * N ^ 2 + 2 * N + 1) + 1)
+info: IDMM/FinalAudit.lean:59:0: @IDMM.not_strictNCSizeLE_zero : ∀ {K : Type u_1} {V : Type u_2} [inst : CommRing K] (f : FreeAlgebra K V),
+  ¬IDMM.StrictNCSizeLE f 0
+Build completed successfully (9562 jobs).

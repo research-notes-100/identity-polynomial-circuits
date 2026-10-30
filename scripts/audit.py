@@ -11,16 +11,30 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+# The circuit-model checks (IDMM/CircuitModel.lean), audited in both import closures.
+# Each audit module must print the signature and the axiom list of every name in its set.
+CIRCUIT_MODEL = {
+    'IDMM.ncSizeLE_strict', 'IDMM.StrictNCSizeLE.ncSizeLE', 'IDMM.strict_of_bound',
+    'IDMM.two_mul_le_of_ncSizeLE_ID', 'IDMM.not_idBoundF_of_lt_one', 'IDMM.not_strictIDBoundF_of_lt_one',
+    'IDMM.strict_id_trivial', 'IDMM.not_strictNCSizeLE_zero',
+}
 TOP = {
     'IDMM.main_target', 'IDMM.main_target_almost_every_char',
     'IDMM.main_target_char_zero', 'IDMM.construction_almost_every_char',
     'IDMM.construction_char_zero', 'IDMM.IDBoundF.of_forall_add', 'IDMM.thin_main',
-}
+    'IDMM.construction_gen', 'IDMM.construction_target',
+    'PauliCubes.id_circuit', 'PauliCubes.s4_circuit', 'PauliCubes.perm4_circuit',
+    # strict circuit model (every gate has two different inputs)
+    'IDMM.strict_main_target', 'IDMM.strict_main_target_char_zero',
+    'IDMM.strict_main_target_almost_every_char', 'IDMM.cubes_bound', 'IDMM.strict_cubes_bound',
+} | CIRCUIT_MODEL
 # The every-characteristic theorem has its own import closure: Matmul clashes with OAI's Main.
 TOP_EVERY_CHAR = {
     'IDMM.id_bound_every_char', 'IDMM.rankAtMost_of_scheme', 'IDMM.uz_exponent_slack',
-    'Matmul.RectangularRankBridge.exists_scheme_certificate',
-}
+    'Matmul.RectangularRankBridge.exists_scheme_certificate', 'IDMM.construction_gen',
+    'IDMM.oracles_of_scheme', 'IDMM.exists_ext_of_algClosure', 'IDMM.IDBoundF.of_ext',
+    'IDMM.strict_id_bound_every_char', 'IDMM.id_bound_every_char_rat', 'IDMM.id_bound_every_char_zmod3',
+} | CIRCUIT_MODEL
 # (stage, audit module) pairs that validate.py runs, in order.
 AXIOM_STAGES = (('axioms', 'IDMM/FinalAudit.lean'), ('axioms_every_char', 'IDMM/FinalAuditEveryChar.lean'))
 KERNEL_STAGES = (('kernel', 'IDMM.FinalAudit'), ('kernel_every_char', 'IDMM.FinalAuditEveryChar'))
@@ -63,7 +77,9 @@ def audit(directory):
         text = (directory / f'{stage}.log').read_text()
         assert not re.search(r'\berror\b', text), f'{stage}: Lean reported an error'
         rows = dict(re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", text))
-        assert top <= rows.keys(), f'Missing declarations: {top - rows.keys()}'
+        assert top <= rows.keys(), f'{stage}: missing axiom lists: {top - rows.keys()}'
+        unsigned = {n for n in top if not re.search(rf'^@?{re.escape(n)}(\.{{[^}}]*}})?[\s:]', text, re.M)}
+        assert not unsigned, f'{stage}: missing signatures: {unsigned}'
         for name, deps in rows.items():
             assert {d.strip() for d in deps.split(',') if d.strip()} <= ALLOWED, name
     return {'status': 'passed', 'unconditional_main_target_proved': True,
