@@ -29,7 +29,9 @@
 
 \title{Majorana sums of squares and rectangular matrix multiplication:\\
 noncommutative circuits for the identity polynomial of size $N^{1.6692}$}
-\author{Carson Weitnauer}
+\author{Produced by AI systems under the supervision of Carson Weitnauer\thanks{The mathematics, the Lean proofs
+and this paper were produced by AI systems (OpenAI's Codex and Anthropic's Claude). Carson Weitnauer supervised the
+research and is responsible for its release. How to attribute authorship of such work is an open question.}}
 \date{October 29, 2026}
 
 \begin{document}
@@ -83,8 +85,8 @@ $O(N^{1.954})$ from the rectangular bound of Le~Gall and Urrutia~\cite{LeGallUrr
 of the $y$ variables, his argument gives the exponent $(r+\omega(1,r,1)+\delta)/(r+1)$ with $\delta<0.616$; with
 Uzna\'nski's $\omega(1,2,1)\le\frac{25}{8}$~\cite{Uznanski2026}, the input behind Theorem~\ref{thm:main}, this is
 below $1.9137$ at $r=2$. This comparison is computed here, not formalized.) The bound $\sigma(n)\le n^{\sqrt2+o(1)}$ over $\C$ follows from Appendix~B of Anthropic's October 2026
-paper~\cite{Anthropic3SAT}; it was observed independently on October~27, 2026 by Kapila~\cite{Kapila2026}, by
-the author (with a Lean proof built on Anthropic's formalization~\cite{AnthropicFormalMath}, in the
+paper~\cite{Anthropic3SAT}; it was observed independently on October~27, 2026 by Kapila~\cite{Kapila2026}, in
+this project (with a Lean proof built on Anthropic's formalization~\cite{AnthropicFormalMath}, in the
 \texttt{theorem-b} directory of this paper's repository), and by
 Tulsyan~\cite{Tulsyan2026}. Fed into Hrube\v{s}'s argument it improves the circuit exponent, but only to about
 $1.85$--$1.89$ depending on the matrix-multiplication input. Before Hrube\v{s}, the best bound for $\ID_N$ was the
@@ -128,7 +130,7 @@ $N^{\log_2(12)/2}=N^{1.7925}$, realizes the single-bit identity for the crossing
 bits'' count in Appendix~H of~\cite{Anthropic3SAT}; Pauli (Bell) bases for the same tensor were also used by
 Tulsyan~\cite{Tulsyan2026}, for a different cost measure.
 
-Theorem~\ref{thm:cubes} is the author's earlier ``Pauli cube'' construction (October~28, 2026); we state it for
+Theorem~\ref{thm:cubes} is this project's earlier ``Pauli cube'' construction (October~28, 2026); we state it for
 comparison and refer to its formalization (Section~\ref{sec:lean}). This paper proves Theorems~\ref{thm:main}
 and~\ref{thm:oairoute}. Their heart is the following conditional bound, which turns block oracles for rectangular
 products (Definition~\ref{def:oracle}) into a circuit exponent.
@@ -773,12 +775,13 @@ FRO and its contributors, and on Mathlib, whose community built, among much else
 closed fields and the Lefschetz principle used in Section~\ref{sec:charp}. We thank A.~Kapila and Vaibhav Tulsyan, whose independent same-day notes~\cite{Kapila2026,Tulsyan2026} on
 sums of squares we became aware of during this work.
 
-\paragraph{Use of AI systems.} The research and the formalization were carried out by the author working with AI
-systems: OpenAI's Codex (in ChatGPT) for research cycles, including the construction of
+\paragraph{Use of AI systems.} The mathematics, the Lean proofs and this paper were produced by AI systems under
+the supervision of Carson Weitnauer: OpenAI's Codex (in ChatGPT) for research cycles, including the construction of
 Sections~\ref{sec:corner}--\ref{sec:assembly}, and for a review of the formalization that contributed
 Theorem~\ref{thm:fieldtransfer} and its Lean proof; and Anthropic's Claude for review, the Lean formalization and
-the drafting of this paper. All theorems and lemmas are machine-checked as described in Section~\ref{sec:lean}; the
-author is responsible for the contents.
+the writing of this paper. All theorems and lemmas are machine-checked as described in Section~\ref{sec:lean}.
+Carson Weitnauer is responsible for the release of this work. How to attribute authorship of such work is an open
+question.
 
 \begin{thebibliography}{99}
 \bibitem{ADVWXXZ2024} J.~Alman, R.~Duan, V.~Vassilevska Williams, Y.~Xu, Z.~Xu and R.~Zhou, \emph{More asymmetry

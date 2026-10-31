@@ -113,5 +113,6 @@ steps.
 - `IDMM/`, `PauliCubes/`, `theorem-b/`, `paper/` and the scripts: Apache-2.0 (`LICENSE`; `LICENSE-PAULICUBES`
   is the same license).
 
-The research and formalization were done with AI systems (OpenAI's Codex and Anthropic's Claude); the paper's
-acknowledgments and AI-use statement give the details.
+The mathematics, the Lean proofs and the paper were produced by AI systems (OpenAI's Codex and Anthropic's Claude).
+Carson Weitnauer supervised the research and is responsible for its release. How to attribute authorship of such
+work is an open question. The paper's AI-use statement gives the details.
